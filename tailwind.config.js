@@ -6,11 +6,10 @@ module.exports = {
     extend: {
       colors: {
         brand: colors.blue,
-        secondary: colors.indigo,
         success: colors.green,
         error: colors.red,
         warning: colors.yellow,
-        accent: colors.purple,
+        accent: colors.indigo,
       },
     },
   },

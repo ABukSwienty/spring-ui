@@ -1,6 +1,8 @@
 import { FramerVariants } from "../types/framer-variants";
 
-const setVariants = (variants: Partial<FramerVariants>): FramerVariants => {
+const setVariants = ([...variants]: Array<
+  Partial<FramerVariants> | undefined | boolean | null
+>): FramerVariants => {
   const defaultVariants: FramerVariants = {
     initial: {},
     animate: {},
@@ -11,7 +13,10 @@ const setVariants = (variants: Partial<FramerVariants>): FramerVariants => {
     inView: {},
     focus: {},
   };
-  return Object.assign(defaultVariants, variants);
+  const variantsCopy = variants.filter(
+    (variant) => typeof variant === "object"
+  );
+  return Object.assign(defaultVariants, ...variantsCopy);
 };
 
 export default setVariants;

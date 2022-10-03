@@ -6,7 +6,7 @@ import {
   iconSizes,
 } from "../../atoms/button/button";
 import framerVariantProps from "../../../constants/framer-variant-props";
-import classes from "../../../utils/classes";
+import setClasses from "../../../utils/set-classes";
 import setVariants from "../../../utils/set-variants";
 import { Spinner } from "../../atoms/spinner";
 import { motion, AnimatePresence } from "framer-motion";
@@ -104,7 +104,7 @@ export const PromiseButton = ({
   const svgVariants = setVariants([SVG_VARIANTS]);
   const pathVariants = setVariants([PATH_VARIANTS]);
 
-  const classNames = classes([
+  const classNames = setClasses([
     "rounded-lg transition-[shadow,color,background-color,border-color,text-decoration-color,fill,stroke] duration-300 ease-in-out overflow-hidden flex items-center justify-center",
     buttonSizes[size],
     (state === "idle" || state === "loading") && buttonColors[color],
@@ -112,7 +112,7 @@ export const PromiseButton = ({
     state === "error" && buttonColors.error,
   ]);
 
-  const iconClassNames = classes([iconSizes[size], "ml-3"]);
+  const iconClassNames = setClasses([iconSizes[size], "ml-3"]);
 
   const handlePromise = () => {
     setState("loading");

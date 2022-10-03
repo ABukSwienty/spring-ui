@@ -27,6 +27,6 @@ export const Error = Template.bind({});
 Error.args = {
   children: "Send email",
   size: "md",
-
+  trailingIcon: BeakerIcon,
   onClick: () => new Promise((resolve, reject) => setTimeout(reject, 2000)),
 };

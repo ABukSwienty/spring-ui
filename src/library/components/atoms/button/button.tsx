@@ -5,7 +5,7 @@ import { FramerVariants } from "../../../types/framer-variants";
 import { OmitFramerProps } from "../../../types/omit-framer-props";
 import { SpringColors } from "../../../types/spring-colors";
 import { SpringSizes } from "../../../types/spring-sizes";
-import classes from "../../../utils/classes";
+import setClasses from "../../../utils/set-classes";
 import setVariants from "../../../utils/set-variants";
 import { Spinner } from "../spinner";
 
@@ -38,20 +38,20 @@ export const iconSizes: SpringSizes = {
 
 export const buttonColors: SpringColors = {
   brand:
-    "bg-brand-700 text-white hover:bg-brand-600 focus:ring-2 focus:ring-brand-600 focus:ring-offset-2",
+    "bg-brand-700 text-white hover:bg-brand-600 ring-1 ring-brand-600 focus:ring-2 focus:ring-offset-2",
   secondary:
-    "bg-brand-200 text-brand-700 hover:bg-brand-100 focus:ring-2 focus:ring-brand-200 focus:ring-offset-2",
+    "bg-brand-200 text-brand-700 hover:bg-brand-100 ring-1 ring-brand-200 focus:ring-2 focus:ring-offset-2",
   accent:
-    "bg-accent-700 text-white hover:bg-accent-600 focus:ring-2 focus:ring-accent-600 focus:ring-offset-2",
+    "bg-accent-700 text-white hover:bg-accent-600 ring-1 ring-accent-600 focus:ring-2 focus:ring-offset-2",
   success:
-    "bg-success-700 text-white hover:bg-success-600 focus:ring-2 focus:ring-success-600 focus:ring-offset-2",
+    "bg-success-700 text-white hover:bg-success-600 ring-1 ring-success-600 focus:ring-2 focus:ring-offset-2",
   error:
-    "bg-error-700 text-white hover:bg-error-600 focus:ring-2 focus:ring-error-600 focus:ring-offset-2",
+    "bg-error-700 text-white hover:bg-error-600 ring-1 ring-error-600 focus:ring-2 focus:ring-offset-2",
   warning:
-    "bg-warning-700 text-white hover:bg-warning-600 focus:ring-2 focus:ring-warning-600 focus:ring-offset-2",
+    "bg-warning-700 text-white hover:bg-warning-600 ring-1 ring-warning-600 focus:ring-2 focus:ring-offset-2",
   light:
     "bg-gray-50 text-gray-700 hover:bg-gray-100 ring-1 ring-gray-200 focus:ring-2 focus:ring-accent-600 focus:ring-offset-2",
-  dark: "bg-gray-800 text-white hover:bg-gray-700 focus:ring-2 focus:ring-gray-700 focus:ring-offset-2",
+  dark: "bg-gray-800 text-white hover:bg-gray-700 ring-1 ring-gray-600 focus:ring-2 focus:ring-offset-2",
 };
 
 export const BUTTON_VARIANTS: Partial<FramerVariants> = {
@@ -66,18 +66,19 @@ export const Button = ({
   leadingIcon: LeadingIcon,
   trailingIcon: TrailingIcon,
   children,
+  className,
   isLoading = false,
   ...props
 }: ButtonProps) => {
   const buttonVariants = setVariants([BUTTON_VARIANTS]);
-  const classNames = classes([
-    "rounded-lg transition-shadow duration-100 ease-out",
+  const classNames = setClasses([
+    "rounded-lg transition-shadow duration-100 ease-out outline-none relative",
     (LeadingIcon || TrailingIcon) && "flex items-center justify-center",
     buttonSizes[size],
     buttonColors[color],
+    className,
   ]);
-
-  const iconClassNames = classes([
+  const iconClassNames = setClasses([
     iconSizes[size],
     TrailingIcon ? "ml-3" : "mr-3",
   ]);

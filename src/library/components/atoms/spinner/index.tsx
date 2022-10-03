@@ -1,6 +1,6 @@
 import { SpringColors } from "../../../types/spring-colors";
 import { SpringSizes } from "../../../types/spring-sizes";
-import classes from "../../../utils/classes";
+import setClasses from "../../../utils/set-classes";
 
 export interface SpinnerProps
   extends Omit<React.ComponentPropsWithoutRef<"svg">, "children"> {
@@ -33,7 +33,7 @@ export const Spinner = ({
   color = "brand",
   className,
 }: SpinnerProps) => {
-  const classNames = classes([
+  const classNames = setClasses([
     "animate-spin",
     spinnerSizes[size],
     spinnerColors[color],

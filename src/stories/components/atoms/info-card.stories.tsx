@@ -23,4 +23,5 @@ Primary.args = {
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quas modi, cupiditate hic asperiores voluptatibus sequi doloribus explicabo facilis debitis perferendis, eligendi quam. Sint quis facere temporibus earum explicabo? Voluptatibus.",
   trailingIcon: BeakerIcon,
   color: "brand",
+  trailingBadge: "Lorem ipsum dolor",
 };

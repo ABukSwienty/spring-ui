@@ -4,8 +4,8 @@ import { SpringSizes } from "../../../types/spring-sizes";
 import setClasses from "../../../utils/set-classes";
 
 export interface BadgeProps extends React.ComponentPropsWithoutRef<"div"> {
-  color: keyof typeof badgeColor;
-  size: keyof typeof badgeSize;
+  color?: keyof typeof badgeColor;
+  size?: keyof typeof badgeSize;
   leadingIcon?: FC<React.ComponentProps<"svg">>;
   trailingIcon?: FC<React.ComponentProps<"svg">>;
 }
@@ -33,11 +33,13 @@ export const Badge = ({
   size = "xs",
   trailingIcon: TrailingIcon,
   leadingIcon: LeadingIcon,
+  className,
 }: BadgeProps) => {
   const classNames = setClasses([
     "rounded-md w-fit flex items-center",
     badgeColor[color],
     badgeSize[size],
+    className,
   ]);
   return (
     <div className={classNames}>

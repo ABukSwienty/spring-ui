@@ -5,3 +5,4 @@ export * from "./components/atoms/spinner";
 export * from "./components/atoms/checkbox/checkbox";
 export * from "./components/atoms/info-card";
 export * from "./components/atoms/badge/badge";
+export * from "./components/molecules/slider";

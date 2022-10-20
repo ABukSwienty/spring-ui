@@ -2,21 +2,17 @@ import { useContext } from "react";
 import { NormalSlider } from "./sliders/normal-slider";
 import SliderProvider, { SliderContext } from "./provider";
 import { SnapToCenterAndInfiniteSlider } from "./sliders/snap-to-center-and-infinite-slider";
+import { SnapToCenterSlider } from "./sliders/snap-to-center-slider";
 
 export interface SliderComponentProps {
   swipeConfidenceThreshold?: number;
-  isInfinite?: boolean;
-  snapToCenter?: boolean;
+  mode: "snapToCenterAndInfinite" | "normal" | "snapToCenter";
   extendSlides?: number;
   offsetBy?: number;
   children: JSX.Element[];
 }
 
-const Component = ({
-  snapToCenter,
-  isInfinite,
-  ...props
-}: SliderComponentProps) => {
+const Component = ({ mode, ...props }: SliderComponentProps) => {
   const { root } = useContext(SliderContext);
 
   return (
@@ -24,12 +20,11 @@ const Component = ({
       ref={root}
       className="relative h-fit w-full overflow-hidden whitespace-nowrap"
     >
-      {snapToCenter && isInfinite && (
+      {mode === "snapToCenterAndInfinite" && (
         <SnapToCenterAndInfiniteSlider {...props} />
       )}
-      {!snapToCenter && !isInfinite && <NormalSlider {...props} />}
-      {!snapToCenter && isInfinite && <>under development</>}
-      {snapToCenter && !isInfinite && <>under development</>}
+      {mode === "normal" && <NormalSlider {...props} />}
+      {mode === "snapToCenter" && <SnapToCenterSlider {...props} />}
     </div>
   );
 };
@@ -51,8 +46,7 @@ Slider.defaultProps = {
   swipeConfidenceThreshold: 10000,
   extendSlides: 2,
   offsetBy: 1,
-  isInfinite: true,
-  snapToCenter: true,
+  mode: "snapToCenterAndInfinite",
 };
 
 export { Slider };

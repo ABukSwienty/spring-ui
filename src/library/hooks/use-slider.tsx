@@ -41,6 +41,7 @@ const useSlider = ({
   );
 
   return {
+    children,
     controls,
     slides,
     setSlides,

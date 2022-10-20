@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Slider, SliderComponentProps } from "..";
 import useSlider from "../../../../hooks/use-slider";
-import useWindowResize from "../../../../hooks/use-window-resize";
+import useSliderDragConstraints from "../../../../hooks/use-slider-drag-contraints";
 import { SliderContext } from "../provider";
 
-export interface NormalSliderProps
-  extends Omit<SliderComponentProps, "isInfinite" | "snapToCenter"> {}
+export interface NormalSliderProps extends Omit<SliderComponentProps, "mode"> {}
 
 export const NormalSlider = ({
   extendSlides = Slider.defaultProps.extendSlides,
@@ -21,38 +20,12 @@ export const NormalSlider = ({
     children,
   });
 
-  // key is needed to force framer to update the contraints on resize
-  const [dragConstraints, setDragConstraints] = useState({
-    constraints: { left: 0, right: 60000 },
-    key: 0,
+  const { dragConstraints } = useSliderDragConstraints({
+    sliderRef,
+    offsetBy,
+    slideSize: size,
+    slidesLength: slides.length,
   });
-
-  const handleSetConstraints = useCallback(() => {
-    if (sliderRef.current) {
-      const { offsetWidth } = sliderRef.current;
-      const sizePercentage = size / 100;
-      const offset = offsetBy * offsetWidth * sizePercentage;
-      const left = -(
-        offsetWidth * (slides.length - 1) * sizePercentage -
-        offset
-      );
-      const right = offsetWidth * offsetBy * sizePercentage;
-      setDragConstraints((prev) => ({
-        constraints: { left, right },
-        key: prev.key + 1,
-      }));
-    }
-  }, [sliderRef, slides, size, offsetBy]);
-
-  useWindowResize(handleSetConstraints);
-
-  useEffect(() => {
-    if (sliderRef.current) {
-      handleSetConstraints();
-    }
-  }, [sliderRef, handleSetConstraints]);
-
-  console.log(dragConstraints);
 
   return (
     <motion.div

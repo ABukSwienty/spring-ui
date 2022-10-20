@@ -40,7 +40,7 @@ export const Slider = Template.bind({});
 Slider.args = {
   offsetBy: example.length,
   extendSlides: 2,
-  snapToCenter: true,
-  isInfinite: true,
   swipeConfidenceThreshold: 10000,
+  slideSize: 75,
+  mode: "snapToCenterAndInfinite",
 };

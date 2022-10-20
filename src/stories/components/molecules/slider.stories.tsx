@@ -38,6 +38,9 @@ const Template: ComponentStory<typeof SliderComponent> = (args) => {
 export const Slider = Template.bind({});
 
 Slider.args = {
-  slideSize: 75,
+  offsetBy: example.length,
+  extendSlides: 2,
+  snapToCenter: true,
+  isInfinite: true,
   swipeConfidenceThreshold: 10000,
 };

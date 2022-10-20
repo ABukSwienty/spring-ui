@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useContext, useEffect, useRef, useState } from "react";
-import { SliderContext } from "./provder";
+import { SliderContext } from "./provider";
 const Slide = ({ children }: { children: React.ReactNode }) => {
   const { root, size } = useContext(SliderContext);
   const ref = useRef(null);

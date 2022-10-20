@@ -29,9 +29,9 @@ const useSlider = ({
 
   // set renderable elements
   const [slides, setSlides] = useState(
-    extendArray(children, Math.min(extendSlides, 1)).map((child, index) => (
-      <Slide key={index}>{child}</Slide>
-    ))
+    extendArray(children, extendSlides <= 0 ? 1 : extendSlides).map(
+      (child, index) => <Slide key={index}>{child}</Slide>
+    )
   );
 
   // get relative position for centering the slider

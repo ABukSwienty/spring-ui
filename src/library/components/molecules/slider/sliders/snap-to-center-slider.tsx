@@ -42,7 +42,7 @@ export const SnapToCenterSlider = ({
   const handleLeft = async () => {
     setCurrentOffset((prev) => {
       const move = prev + size;
-      if (move > 0) {
+      if (move > position.centralOffset) {
         return prev;
       }
       controls.start({

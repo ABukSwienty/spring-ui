@@ -8,7 +8,16 @@ const Slide = ({ children }: { children: React.ReactNode }) => {
   const inView = useInView(ref, { amount: 0.95, root });
 
   useEffect(() => {
-    setIsActive(inView);
+    /**
+     * Debounce because the inView hook fires multiple times and will cause stuttering issues if we don't debounce
+     * Especially problems when sliding left as inView will fire 4 times instead of just 2
+     * More of a hot fix than a solution
+     */
+    const debounce = setTimeout(() => {
+      setIsActive(inView);
+    }, 50);
+
+    return () => clearTimeout(debounce);
   }, [inView]);
 
   return (
@@ -16,7 +25,7 @@ const Slide = ({ children }: { children: React.ReactNode }) => {
       ref={ref}
       animate={{
         scale: isActive ? 1 : 0.8,
-        opacity: isActive ? 1 : 0.5,
+        opacity: isActive ? 1 : 0.8,
       }}
       transition={{
         duration: 0.3,

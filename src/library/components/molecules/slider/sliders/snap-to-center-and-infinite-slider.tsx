@@ -36,11 +36,11 @@ export const SnapToCenterAndInfiniteSlider = ({
     setSlides((prev) => wrapArray(prev));
     handleCenter();
   };
-
   const handleLeft = async () => {
     await controls.start({
       translateX: `${position.moveLeft}%`,
     });
+
     setSlides((prev) => wrapArray(prev, "left"));
     handleCenter();
   };

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { SpringColors } from "../../../types/spring-colors";
-import setClasses from "../../../utils/set-classes";
+import setClasses from "../../../util/set-classes";
 
 export const trailingIconColors: SpringColors = {
   brand: "bg-brand-50 ring-brand-100",

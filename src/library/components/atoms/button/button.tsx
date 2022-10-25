@@ -5,8 +5,8 @@ import { FramerVariants } from "../../../types/framer-variants";
 import { OmitFramerProps } from "../../../types/omit-framer-props";
 import { SpringColors } from "../../../types/spring-colors";
 import { SpringSizes } from "../../../types/spring-sizes";
-import setClasses from "../../../utils/set-classes";
-import setVariants from "../../../utils/set-variants";
+import setClasses from "../../../util/set-classes";
+import setVariants from "../../../util/set-variants";
 import { Spinner } from "../spinner";
 
 export interface ButtonProps

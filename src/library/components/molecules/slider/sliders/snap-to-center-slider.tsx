@@ -2,7 +2,7 @@ import { DraggableProps, motion } from "framer-motion";
 import { useContext, useState } from "react";
 import { Slider, SliderComponentProps } from "..";
 import useSlider from "../../../../hooks/use-slider";
-import { getSwipePower } from "../../../../utils/get-swipe-power";
+import { getSwipePower } from "../../../../util/get-swipe-power";
 import { SliderContext } from "../provider";
 
 export interface SnapToCenterSliderProps

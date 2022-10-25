@@ -1,5 +1,5 @@
 import React from "react";
-import setClasses from "../../../utils/set-classes";
+import setClasses from "../../../util/set-classes";
 import { Button, ButtonProps } from "../button/button";
 
 export interface ButtonGroupProps

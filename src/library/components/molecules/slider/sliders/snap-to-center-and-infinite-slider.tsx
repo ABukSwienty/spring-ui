@@ -2,8 +2,8 @@ import { DraggableProps, motion } from "framer-motion";
 import { useContext } from "react";
 import { Slider, SliderComponentProps } from "..";
 import useSlider from "../../../../hooks/use-slider";
-import { getSwipePower } from "../../../../utils/get-swipe-power";
-import wrapArray from "../../../../utils/wrap-array";
+import { getSwipePower } from "../../../../util/get-swipe-power";
+import wrapArray from "../../../../util/wrap-array";
 import { SliderContext } from "../provider";
 
 export interface SnapToCenterAndInfiniteSliderProps

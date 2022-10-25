@@ -1,6 +1,6 @@
 import { SpringColors } from "../../../types/spring-colors";
 import { SpringSizes } from "../../../types/spring-sizes";
-import setClasses from "../../../utils/set-classes";
+import setClasses from "../../../util/set-classes";
 
 export interface SpinnerProps
   extends Omit<React.ComponentPropsWithoutRef<"svg">, "children"> {

@@ -6,8 +6,8 @@ import {
   iconSizes,
 } from "../../atoms/button/button";
 import framerVariantProps from "../../../constants/framer-variant-props";
-import setClasses from "../../../utils/set-classes";
-import setVariants from "../../../utils/set-variants";
+import setClasses from "../../../util/set-classes";
+import setVariants from "../../../util/set-variants";
 import { Spinner } from "../../atoms/spinner";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -91,8 +91,9 @@ export const PromiseButton = ({
   children,
   ...props
 }: PromiseButtonProps) => {
-  const [state, setState] =
-    useState<"idle" | "loading" | "success" | "error">("idle");
+  const [state, setState] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
 
   const buttonVariants = setVariants([
     BUTTON_VARIANTS,

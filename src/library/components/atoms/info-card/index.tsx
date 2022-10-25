@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { SpringColors } from "../../../types/spring-colors";
-import setClasses from "../../../utils/set-classes";
+import setClasses from "../../../util/set-classes";
 import { InfoCardTrailingIcon } from "./trailing-icon";
 import { InfoCardBadge } from "./info-card-badge";
 

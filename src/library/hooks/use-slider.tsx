@@ -1,8 +1,8 @@
 import { useAnimationControls } from "framer-motion";
 import { useMemo, Children, useState, useRef } from "react";
 import Slide from "../components/molecules/slider/slide";
-import extendArray from "../utils/extend-array";
-import getSlideOffset from "../utils/get-slide-offset";
+import extendArray from "../util/extend-array";
+import getSlideOffset from "../util/get-slide-offset";
 
 export interface useSliderProps {
   size: number;

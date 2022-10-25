@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { SpringColors } from "../../../types/spring-colors";
 import { SpringSizes } from "../../../types/spring-sizes";
-import setClasses from "../../../utils/set-classes";
+import setClasses from "../../../util/set-classes";
 
 export interface BadgeProps extends React.ComponentPropsWithoutRef<"div"> {
   color?: keyof typeof badgeColor;

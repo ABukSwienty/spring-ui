@@ -13,7 +13,11 @@ export interface AppCardProps {
   openWidth?: number;
   openHeight?: number;
   swipeToCloseThreshold?: number;
-  children: (isOpen: boolean, isAnimationComplete: boolean) => React.ReactNode;
+  children: (
+    isOpen: boolean,
+    isAnimationComplete: boolean,
+    handleClose: () => void
+  ) => React.ReactNode;
 }
 
 export const AppCard = ({
@@ -108,7 +112,7 @@ export const AppCard = ({
             onDragEnd={handleDragEnd}
             style={isAnimating || isOpen ? { z: 9999 } : {}}
           >
-            {children(isOpen, isAnimationComplete)}
+            {children(isOpen, isAnimationComplete, handleClose)}
           </motion.div>
         </AppCardContainer>
       </motion.article>

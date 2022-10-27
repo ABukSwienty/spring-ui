@@ -1,4 +1,12 @@
-import { AnimatePresence, DraggableProps, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  DraggableProps,
+  LayoutGroup,
+  motion,
+} from "framer-motion";
+import { useEffect } from "react";
+import { useRef } from "react";
+
 import { useState } from "react";
 import { getSwipePower } from "../../../util/get-swipe-power";
 import setClasses from "../../../util/set-classes";
@@ -7,28 +15,39 @@ import { AppCardContainer } from "./container";
 import { AppCardOverlay } from "./overlay";
 
 export interface AppCardProps {
-  wrapperClassName?: string;
-  cardClassName?: string;
-  isOpenClassName?: string;
-  openWidth?: number;
-  openHeight?: number;
+  containerClassName?: string;
+  firstClassName?: string;
+  lastClassName?: string;
   swipeToCloseThreshold?: number;
+  borderRadius?: keyof typeof appCardBorders;
+  firstChildren: (firstMount: boolean) => React.ReactNode;
   children: (
-    isOpen: boolean,
     isAnimationComplete: boolean,
     handleClose: () => void
   ) => React.ReactNode;
 }
 
+const appCardBorders = {
+  none: 0,
+  sm: 2,
+  md: 6,
+  lg: 8,
+  xl: 12,
+  "2xl": 16,
+  "3xl": 24,
+  full: 9999,
+};
+
 export const AppCard = ({
-  wrapperClassName,
-  cardClassName,
-  isOpenClassName,
-  openWidth = 400,
-  openHeight = 600,
+  containerClassName,
+  firstClassName,
+  lastClassName,
   swipeToCloseThreshold = 100,
+  borderRadius = "none",
+  firstChildren,
   children,
 }: AppCardProps) => {
+  const firstMount = useRef(true);
   const [{ isOpen, isAnimationComplete, isOpenable, isAnimating }, setState] =
     useState({
       isOpen: false,
@@ -79,43 +98,49 @@ export const AppCard = ({
     });
   };
 
-  const wrapperClassNames = setClasses([wrapperClassName, "relative"]);
+  useEffect(() => {
+    if (firstMount.current) firstMount.current = false;
+  }, []);
+
+  const containerClassNames = setClasses([containerClassName, "relative"]);
 
   return (
     <>
-      <AnimatePresence>{isOpen && <AppCardOverlay />}</AnimatePresence>
-      <motion.article
-        onClick={handleOpen}
-        className={`${wrapperClassNames} ${
-          isOpen ? "cursor-grab" : "cursor-pointer"
-        }`}
-      >
+      {<AnimatePresence>{isOpen && <AppCardOverlay />}</AnimatePresence>}
+
+      <article onClick={handleOpen} className={containerClassNames}>
         <AppCardContainer isOpen={isOpen} isAnimating={isAnimating}>
-          <motion.div
-            layout={true}
-            className={
-              !isOpen && !isAnimating ? cardClassName : isOpenClassName
-            }
-            animate={
-              isOpen
-                ? {
-                    width: openWidth,
-                    height: openHeight,
-                  }
-                : {}
-            }
-            transition={isOpen ? openSpring : closeSpring}
-            onAnimationComplete={handleAnimationComplete}
-            drag={isOpen ? "y" : false}
-            dragElastic={1}
-            dragConstraints={{ top: 0, bottom: 0 }}
-            onDragEnd={handleDragEnd}
-            style={isAnimating || isOpen ? { z: 9999 } : {}}
-          >
-            {children(isOpen, isAnimationComplete, handleClose)}
-          </motion.div>
+          <LayoutGroup>
+            <motion.div
+              className={!isOpen ? firstClassName : lastClassName}
+              layout={true}
+              transition={isOpen ? openSpring : closeSpring}
+              onLayoutAnimationComplete={handleAnimationComplete}
+              drag={isOpen ? "y" : false}
+              dragElastic={1}
+              dragConstraints={{ top: 0, bottom: 0 }}
+              onDragEnd={handleDragEnd}
+              whileTap={
+                isOpen && isAnimationComplete ? { cursor: "grabbing" } : {}
+              }
+              style={{
+                zIndex: isOpen || isAnimating ? 9999 : 0,
+                cursor: isOpen && isAnimationComplete ? "grab" : "pointer",
+              }}
+              initial={{ borderRadius: appCardBorders[borderRadius] }}
+            >
+              <motion.div layout="position" className="relative h-full w-full">
+                {!isOpen && !isAnimating && (
+                  <>{firstChildren(firstMount.current)}</>
+                )}
+                {isOpen && <>{children(isAnimationComplete, handleClose)}</>}
+              </motion.div>
+            </motion.div>
+          </LayoutGroup>
         </AppCardContainer>
-      </motion.article>
+      </article>
     </>
   );
 };
+
+export { AppCardProvider } from "./provider";

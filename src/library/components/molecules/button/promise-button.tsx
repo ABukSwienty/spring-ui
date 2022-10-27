@@ -10,7 +10,7 @@ import setClasses from "../../../util/set-classes";
 import setVariants from "../../../util/set-variants";
 import { Spinner } from "../../atoms/spinner";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FramerVariants } from "../../../types/framer-variants";
 
 export interface PromiseButtonProps

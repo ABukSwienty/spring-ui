@@ -11,7 +11,7 @@ export const AppCardContainer = ({
 }: AppCardContainerProps) => {
   const containerClass = isOpen
     ? "fixed top-0 left-0 w-screen h-screen bg-transparent flex items-center justify-center"
-    : "relative block h-fit w-fit";
+    : "relative block h-full w-full";
   const zIndex = isOpen || isAnimating ? 9999 : 0;
 
   return (

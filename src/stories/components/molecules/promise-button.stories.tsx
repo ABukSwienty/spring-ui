@@ -8,7 +8,6 @@ export default {
   component: PromiseButton,
 } as ComponentMeta<typeof PromiseButton>;
 
-//👇 We create a “template” of how args map to rendering
 const Template: ComponentStory<typeof PromiseButton> = (args) => (
   <PromiseButton {...args} />
 );

@@ -8,3 +8,4 @@ export * from "./components/atoms/spinner";
 export * from "./components/molecules/button/promise-button";
 export * from "./components/molecules/slider";
 export * from "./components/molecules/app-card";
+export * from "./components/molecules/inputs";

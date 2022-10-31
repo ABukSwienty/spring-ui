@@ -9,6 +9,7 @@ import { useRef } from "react";
 
 import { useState } from "react";
 import { getSwipePower } from "../../../util/get-swipe-power";
+import isBetween from "../../../util/is-between";
 import setClasses from "../../../util/set-classes";
 import { openSpring, closeSpring } from "./animations";
 import { AppCardContainer } from "./container";
@@ -73,7 +74,9 @@ export const AppCard = ({
     e,
     { offset, velocity }
   ) => {
-    const swipe = getSwipePower(offset.x, velocity.x);
+    if (isBetween(offset.y, -swipeToCloseThreshold, swipeToCloseThreshold))
+      return;
+    const swipe = getSwipePower(offset.y, velocity.y);
     if (swipe > swipeToCloseThreshold || swipe < -swipeToCloseThreshold) {
       handleClose();
     }
@@ -142,5 +145,3 @@ export const AppCard = ({
     </>
   );
 };
-
-export { AppCardProvider } from "./provider";

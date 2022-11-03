@@ -87,7 +87,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const { ref: trailingRef } = useRefCallback(handleTrailing);
 
     const classNames = setClasses([
-      "peer w-full appearance-none rounded-md py-2 px-3 text-sm font-light ring-1 transition-shadow duration-150 ease-in-out focus:outline-none focus:ring-2",
+      "peer w-full appearance-none rounded-md py-2 px-3 text-sm font-light ring-1 transition-shadow duration-150 ease-in-out focus:outline-none focus:ring-2 shadow-sm",
       !error && "ring-gray-200",
       !error && inputColors[color],
       error && inputColors["error"] + " ring-error-500",
@@ -105,7 +105,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {label}
           </Label>
         )}
-        <div className="relative flex h-full w-full flex-row items-center shadow-sm">
+        <div className="relative flex h-full w-full flex-row items-center">
           {leadingIcon && (
             <InputIcon
               ref={leadingRef}
@@ -162,7 +162,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             />
           )}
           {trailingElement && (
-            <div ref={trailingRef} className="absolute right-0 h-fit w-fit">
+            <div ref={trailingRef} className="absolute right-0">
               {trailingElement}
             </div>
           )}

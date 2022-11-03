@@ -9,6 +9,7 @@ import setVariants from "../../../util/set-variants";
 export interface FloatingInputDropdownProps
   extends Omit<React.ComponentPropsWithRef<"ul">, OmitFramerProps> {
   isOpen: boolean;
+  width?: React.CSSProperties["width"];
 }
 
 const variants: Partial<FramerVariants> = {
@@ -22,9 +23,9 @@ const VARIANTS = setVariants([variants]);
 export const FloatingInputDropdown = React.forwardRef<
   HTMLUListElement,
   FloatingInputDropdownProps
->(({ className, children, isOpen, ...rest }, ref) => {
+>(({ className, children, isOpen, style, width, ...rest }, ref) => {
   const classNames = setClasses([
-    "h-48 w-full overflow-scroll rounded-md border bg-white shadow-md origin-[center_-50px]",
+    "h-48 overflow-scroll rounded-md border bg-white shadow-md origin-[center_-50px]",
   ]);
   return (
     <AnimatePresence>
@@ -34,6 +35,10 @@ export const FloatingInputDropdown = React.forwardRef<
           {...framerVariantProps}
           className={classNames}
           {...rest}
+          style={{
+            ...style,
+            width: width ?? "100%",
+          }}
           ref={ref}
         >
           {children}

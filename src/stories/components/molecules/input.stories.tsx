@@ -1,7 +1,8 @@
 import { BeakerIcon } from "@heroicons/react/24/outline";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Button, Input as SpringInput } from "../../../library";
+import { Button, Input as SpringInput, Select } from "../../../library";
+import { wands } from "./select.stories";
 
 export default {
   component: SpringInput,
@@ -86,13 +87,30 @@ Trailing.args = {
   trailingAddOn: "🧙🧹🐉",
 };
 
-export const trailingElement = Template.bind({});
+export const TrailingButton = Template.bind({});
 
-trailingElement.args = {
+TrailingButton.args = {
   ...DefaultInput.args,
   trailingElement: (
     <div className="flex h-full w-full items-center pr-2">
       <Button size="xs">Expelliarmus!</Button>
+    </div>
+  ),
+};
+
+export const TrailingSelect = Template.bind({});
+
+TrailingSelect.args = {
+  ...DefaultInput.args,
+  label: "Enter your name and select a wand",
+  trailingElement: (
+    <div className="float-right h-full w-32">
+      <Select
+        name="wand"
+        className="shadow-none ring-0"
+        options={wands}
+        onChange={() => {}}
+      />
     </div>
   ),
 };

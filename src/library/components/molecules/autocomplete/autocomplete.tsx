@@ -10,9 +10,8 @@ import {
   useFloatingInputOptionsSingleHandlers,
   useFloatingInputOptionsKeyboard,
 } from "../../../hooks/use-floating-input-options";
-import setClasses from "../../../util/set-classes";
 
-export interface SelectProps<
+export interface AutocompleteProps<
   ValueType extends string | number,
   Name extends string
 > extends Omit<
@@ -35,7 +34,6 @@ export interface SelectProps<
   useClickOutside?: boolean;
   selectCloseDelay?: number;
   closeOnSelect?: boolean;
-  dropdownWidth?: React.CSSProperties["width"];
   /* selectMode?: "select" | "select-deselect"; */
   isClearable?: boolean;
   placement?: Placement;
@@ -43,7 +41,10 @@ export interface SelectProps<
   renderItems?: (item: InputOption<ValueType>) => React.ReactNode;
 }
 
-export const Select = <ValueType extends string | number, Name extends string>({
+export const Autocomplete = <
+  ValueType extends string | number,
+  Name extends string
+>({
   name,
   onChange,
   value,
@@ -58,14 +59,8 @@ export const Select = <ValueType extends string | number, Name extends string>({
   isClearable = false,
   offset = 10,
   renderItems,
-  dropdownWidth = "100%",
-  className,
   ...inputProps
-}: SelectProps<ValueType, Name>) => {
-  const classNames = setClasses([
-    className,
-    "cursor-pointer select-none caret-transparent selection:bg-transparent",
-  ]);
+}: AutocompleteProps<ValueType, Name>) => {
   const ref = useRef<HTMLInputElement>(null);
 
   const savedOnChange = useRef(onChange);
@@ -117,7 +112,7 @@ export const Select = <ValueType extends string | number, Name extends string>({
         readOnly
         onClick={handleClick}
         defaultValue={selected?.label}
-        className={classNames}
+        className="cursor-pointer select-none caret-transparent selection:bg-transparent"
         trailingIcon={
           isClearable && !selected
             ? ChevronUpDownIcon
@@ -144,7 +139,6 @@ export const Select = <ValueType extends string | number, Name extends string>({
           top: y ?? 0,
           left: x ?? 0,
         }}
-        width={dropdownWidth}
         isOpen={isOpen}
       >
         {window &&

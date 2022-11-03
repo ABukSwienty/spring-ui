@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { Select } from "../../../library";
 
-const wands = [
+export const wands = [
   {
     value: "Elderwood",
     detail: 'Thestral tail hair, 15", flexibility unknown',

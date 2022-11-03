@@ -1,15 +1,15 @@
 import { BeakerIcon } from "@heroicons/react/24/outline";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { TextInput as SpringTextInput } from "../../../library";
+import { Button, Input as SpringInput } from "../../../library";
 
 export default {
-  component: SpringTextInput,
-} as ComponentMeta<typeof SpringTextInput>;
+  component: SpringInput,
+} as ComponentMeta<typeof SpringInput>;
 
-const Template: ComponentStory<typeof SpringTextInput> = (args) => (
+const Template: ComponentStory<typeof SpringInput> = (args) => (
   <div className="w-full md:w-1/2">
-    <SpringTextInput {...args} />
+    <SpringInput {...args} />
   </div>
 );
 
@@ -84,6 +84,17 @@ export const Trailing = Template.bind({});
 Trailing.args = {
   ...DefaultInput.args,
   trailingAddOn: "🧙🧹🐉",
+};
+
+export const trailingElement = Template.bind({});
+
+trailingElement.args = {
+  ...DefaultInput.args,
+  trailingElement: (
+    <div className="flex h-full w-full items-center pr-2">
+      <Button size="xs">Expelliarmus!</Button>
+    </div>
+  ),
 };
 
 export const LeadingAndIcon = Template.bind({});

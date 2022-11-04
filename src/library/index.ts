@@ -10,3 +10,4 @@ export * from "./components/molecules/slider";
 export * from "./components/molecules/app-card";
 export * from "./components/molecules/input";
 export * from "./components/molecules/select";
+export * from "./components/molecules/autocomplete";

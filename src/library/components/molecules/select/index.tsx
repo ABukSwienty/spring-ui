@@ -1,1 +1,1 @@
-export * from "./single-select";
+export * from "./select";

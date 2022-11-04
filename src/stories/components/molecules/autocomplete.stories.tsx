@@ -3,28 +3,31 @@ import { BeakerIcon } from "@heroicons/react/24/outline";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
 
-import { Select } from "../../../library";
+import { Autocomplete, Button } from "../../../library";
 import { wands } from "../../data/wands";
 
 export default {
-  component: Select,
-} as ComponentMeta<typeof Select>;
+  component: Autocomplete,
+} as ComponentMeta<typeof Autocomplete>;
 
-const Template: ComponentStory<typeof Select> = ({
+const Template: ComponentStory<typeof Autocomplete> = ({
   value: valueProps,
   ...args
 }) => {
   const [value, setValue] = useState<undefined | number | string>(valueProps);
   return (
-    <div className="w-full md:w-1/3">
-      <Select
-        {...args}
-        value={value}
-        onChange={(value, name) => {
-          // @ts-ignore
-          setValue(value);
-        }}
-      />
+    <div className="flex w-full flex-wrap items-end gap-4">
+      <div className="w-full space-y-8 md:w-1/3">
+        <Autocomplete
+          {...args}
+          value={value}
+          onChange={(value, name) => {
+            // @ts-ignore
+            setValue(value);
+          }}
+        />
+      </div>
+      {value && <p className="text-sm text-gray-600">{value} chose you!</p>}
     </div>
   );
 };
@@ -35,7 +38,6 @@ Default.args = {
   label: "Select a wand",
   placeholder: "The wand chooses the wizard",
   color: "brand",
-  isClearable: false,
   useClickOutside: true,
   selectCloseDelay: 25,
   closeOnSelect: true,
@@ -45,38 +47,9 @@ Default.args = {
   options: wands,
 };
 
-export const DisabledItems = Template.bind({});
+export const CustomItemsAndCustomNoResults = Template.bind({});
 
-DisabledItems.args = {
-  ...Default.args,
-  options: wands.map((wand, i) => {
-    if (i % 2 === 0) {
-      return {
-        ...wand,
-        disabled: true,
-      };
-    }
-    return wand;
-  }),
-};
-
-export const Clearable = Template.bind({});
-
-Clearable.args = {
-  ...Default.args,
-  isClearable: true,
-};
-
-export const Preselected = Template.bind({});
-
-Preselected.args = {
-  ...Default.args,
-  value: "Ash",
-};
-
-export const CustomItems = Template.bind({});
-
-CustomItems.args = {
+CustomItemsAndCustomNoResults.args = {
   ...Default.args,
   renderItems: (item, isSelected) => (
     <div className="flex h-full w-full flex-wrap items-center gap-4 py-2">
@@ -97,6 +70,14 @@ CustomItems.args = {
       >
         {item.detail}
       </span>
+    </div>
+  ),
+  renderNoResults: (value, handleClose) => (
+    <div className="flex h-full w-full flex-wrap items-center gap-4 py-2 px-2 font-light">
+      <p className="text-sm">Could not find '{value}'.</p>
+      <Button color="light" size="sm" onClick={() => handleClose()}>
+        Add it?
+      </Button>
     </div>
   ),
 };

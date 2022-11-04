@@ -2,13 +2,14 @@ import { ChevronUpDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Input, InputProps } from "../input";
 import { FloatingInputItem } from "../floating/floating-input-item";
 import { Placement } from "@floating-ui/react-dom";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { FloatingInputDropdown } from "../floating/floating-input-dropdown";
 import {
   InputOption,
   useFloatingInputOptions,
   useFloatingInputOptionsSingleHandlers,
   useFloatingInputOptionsKeyboard,
+  InternalInputOption,
 } from "../../../hooks/use-floating-input-options";
 import setClasses from "../../../util/set-classes";
 
@@ -40,7 +41,11 @@ export interface SelectProps<
   isClearable?: boolean;
   placement?: Placement;
   offset?: number;
-  renderItems?: (item: InputOption<ValueType>) => React.ReactNode;
+  renderItems?: (
+    item: InputOption<ValueType>,
+    isSelected: boolean,
+    isCursor: boolean
+  ) => React.ReactNode;
 }
 
 export const Select = <ValueType extends string | number, Name extends string>({
@@ -86,18 +91,10 @@ export const Select = <ValueType extends string | number, Name extends string>({
     },
   });
 
-  const { handleSelect, handleClick, handleClear, selected } =
+  const { handleSelect, handleClear, selected, onSelect, onClear } =
     useFloatingInputOptionsSingleHandlers({
-      ref,
       value,
-      name,
-      isOpen,
-      closeOnSelect,
-      selectCloseDelay,
       options,
-      onChange: savedOnChange,
-      handleClose,
-      handleOpen,
     });
 
   const { cursor } = useFloatingInputOptionsKeyboard(
@@ -106,6 +103,40 @@ export const Select = <ValueType extends string | number, Name extends string>({
     ref,
     isOpen
   );
+
+  const handleSelectedChange = useCallback(
+    (option: InternalInputOption<ValueType> | undefined) => {
+      savedOnChange.current(option ? option.value : undefined, name);
+      if (closeOnSelect) {
+        setTimeout(() => {
+          handleClose();
+        }, selectCloseDelay);
+      }
+    },
+    [closeOnSelect, handleClose, name, selectCloseDelay]
+  );
+
+  const handleClick = useCallback(() => {
+    if (!isOpen) {
+      handleOpen();
+      return;
+    }
+
+    handleClose();
+
+    if (ref.current) {
+      ref.current.blur();
+    }
+  }, [handleClose, handleOpen, isOpen]);
+
+  useEffect(() => {
+    const selectOff = onSelect(handleSelectedChange);
+    const clearOff = onClear(handleSelectedChange);
+    return () => {
+      selectOff();
+      clearOff();
+    };
+  }, [handleSelectedChange, onClear, onSelect]);
 
   return (
     <div ref={reference} className="perspective-2xl relative h-fit w-full">
@@ -150,7 +181,7 @@ export const Select = <ValueType extends string | number, Name extends string>({
         {window &&
           options.current.map((option, index) => (
             <FloatingInputItem
-              color={inputProps.color ? inputProps.color : "brand"}
+              color={inputProps?.color}
               key={option.id}
               id={option.id}
               onClick={handleSelect}
@@ -158,7 +189,13 @@ export const Select = <ValueType extends string | number, Name extends string>({
               isCursor={cursor === index}
               isDisabled={option.disabled}
             >
-              {renderItems ? renderItems(option) : option.label}
+              {renderItems
+                ? renderItems(
+                    option,
+                    selected?.id === option.id,
+                    cursor === index
+                  )
+                : option.label}
             </FloatingInputItem>
           ))}
       </FloatingInputDropdown>

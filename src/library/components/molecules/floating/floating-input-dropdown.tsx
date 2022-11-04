@@ -25,7 +25,7 @@ export const FloatingInputDropdown = React.forwardRef<
   FloatingInputDropdownProps
 >(({ className, children, isOpen, style, width, ...rest }, ref) => {
   const classNames = setClasses([
-    "h-48 overflow-scroll rounded-md border bg-white shadow-md origin-[center_-50px]",
+    "h-fit max-h-48 overflow-scroll rounded-md border bg-white shadow-md origin-[center_-50px]",
   ]);
   return (
     <AnimatePresence>

@@ -2,7 +2,7 @@ import { BeakerIcon } from "@heroicons/react/24/outline";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Button, Input as SpringInput, Select } from "../../../library";
-import { wands } from "./select.stories";
+import { wands } from "../../data/wands";
 
 export default {
   component: SpringInput,

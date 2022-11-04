@@ -1,4 +1,4 @@
-import React, { RefObject, useCallback, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import useEventListener from "../use-event-listener";
 import useKeyboardStrategy from "./use-keyboard-strategy";
 
@@ -27,18 +27,16 @@ const useKeyboardNavigation = <T extends HTMLElement>({
   const { strategy: strategyFn, isIncrementing } =
     useKeyboardStrategy(strategy);
 
-  const savedOnEnter = useRef(onEnter);
-
   const keyDownHandler = useCallback(
     (e: KeyboardEvent) => {
       strategyFn(e, setCursor, maxCursorPos);
 
-      if (e.key === "Enter" && savedOnEnter.current) {
+      if (e.key === "Enter" && onEnter) {
         e.preventDefault();
-        savedOnEnter.current(cursor, setCursor);
+        onEnter(cursor, setCursor);
       }
     },
-    [strategyFn, maxCursorPos, cursor]
+    [strategyFn, maxCursorPos, cursor, onEnter]
   );
 
   useEventListener("keydown", keyDownHandler, element);

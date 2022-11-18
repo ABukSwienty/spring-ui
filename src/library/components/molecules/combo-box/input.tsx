@@ -1,43 +1,32 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
+import React, { useCallback, useContext } from "react";
 import { ComponentProps } from ".";
-import debounce from "../../../util/debounce";
+import setClasses from "../../../util/set-classes";
 import { Input } from "../input";
 import { ComboBoxContextInterface, ComboBoxContext } from "./provider";
-import { defaultFilter } from "./util";
 
 export const ComboBoxInput = <
   ValueType extends string | number,
   Name extends string
->(
-  inputProps: ComponentProps
-) => {
+>({
+  trailingIcon,
+  className,
+  ...inputProps
+}: ComponentProps) => {
   const {
     inputRef,
     name,
     color,
     dispatch,
-    state: { options, inputValue },
+    state: { inputValue },
   } = useContext<ComboBoxContextInterface<ValueType, Name>>(ComboBoxContext);
 
   const handleFocus = useCallback(() => dispatch({ type: "open" }), [dispatch]);
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) =>
-      dispatch({ type: "onInputChange", value: e.target.value }),
-    [dispatch]
-  );
-
-  // filter
-  useEffect(() => {
-    const debouncer = setTimeout(() => {
-      dispatch({
-        type: "filter",
-        payload: defaultFilter(options, inputValue),
-      });
-    }, 300);
-
-    return () => clearTimeout(debouncer);
-  }, [dispatch, options, inputValue]);
+  const classNames = setClasses([
+    className,
+    "cursor-pointer select-none caret-transparent selection:bg-transparent",
+  ]);
 
   return (
     <>
@@ -46,8 +35,10 @@ export const ComboBoxInput = <
         name={name}
         color={color}
         value={inputValue}
-        onChange={handleChange}
+        readOnly
+        className={classNames}
         onFocus={handleFocus}
+        trailingIcon={ChevronUpDownIcon}
         {...inputProps}
       />
     </>

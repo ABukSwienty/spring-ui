@@ -5,10 +5,16 @@ import DefaultNoResults from "./default-no-results";
 import { ComboBoxItem } from "./item";
 import { ComboBoxContextInterface, ComboBoxContext } from "./provider";
 
+export interface ComboBoxOptionsProps {
+  width?: React.CSSProperties["width"];
+}
+
 export const ComboBoxOptions = <
   ValueType extends string | number,
   Name extends string
->() => {
+>({
+  width = "100%",
+}: ComboBoxOptionsProps) => {
   const [cursor, setCursor] = useState(0);
   const {
     inputRef,
@@ -70,7 +76,7 @@ export const ComboBoxOptions = <
         isOpen={isOpen}
         top={floating.y ?? 0}
         left={floating.x ?? 0}
-        width="100%"
+        width={width}
         position={floating.strategy}
       >
         {!noResults && renderables}

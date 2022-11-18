@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { InputProps } from "../input";
+import { ComboBoxFilterableInput } from "./filterable-input";
 import { ComboBoxInput } from "./input";
 import { ComboBoxOptions } from "./options";
 import {
@@ -13,11 +14,16 @@ export interface ComponentProps
   extends Omit<
     InputProps,
     "value" | "onChange" | "onFocus" | "name" | "color"
-  > {}
+  > {
+  isFilterable?: boolean;
+  width?: React.CSSProperties["width"];
+}
 
-const Component = <ValueType extends string | number, Name extends string>(
-  inputProps: ComponentProps
-) => {
+const Component = <ValueType extends string | number, Name extends string>({
+  isFilterable = true,
+  width,
+  ...inputProps
+}: ComponentProps) => {
   const { floating } =
     useContext<ComboBoxContextInterface<ValueType, Name>>(ComboBoxContext);
   return (
@@ -25,8 +31,12 @@ const Component = <ValueType extends string | number, Name extends string>(
       ref={floating.reference}
       className="perspective-2xl relative h-fit w-full"
     >
-      <ComboBoxInput {...inputProps} />
-      <ComboBoxOptions />
+      {isFilterable ? (
+        <ComboBoxFilterableInput {...inputProps} />
+      ) : (
+        <ComboBoxInput {...inputProps} />
+      )}
+      <ComboBoxOptions width={width} />
     </div>
   );
 };

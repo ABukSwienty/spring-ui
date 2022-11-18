@@ -1,7 +1,7 @@
 import { BeakerIcon } from "@heroicons/react/24/outline";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Button, Input as SpringInput } from "../../../library";
+import { Button, ComboBox, Input as SpringInput } from "../../../library";
 import { wands } from "../../data/wands";
 
 export default {
@@ -98,22 +98,25 @@ TrailingButton.args = {
   ),
 };
 
-/* export const TrailingSelect = Template.bind({});
+export const TrailingComboBox = Template.bind({});
 
-TrailingSelect.args = {
+TrailingComboBox.args = {
   ...DefaultInput.args,
   label: "Enter your name and select a wand",
   trailingElement: (
     <div className="float-right h-full w-32">
-      <Select
+      <ComboBox
         name="wand"
-        className="shadow-none ring-0"
+        className="!shadow-none !ring-0"
         options={wands}
         onChange={() => {}}
+        isFilterable={false}
+        width="150%"
+        placement="bottom-end"
       />
     </div>
   ),
-}; */
+};
 
 export const LeadingAndIcon = Template.bind({});
 

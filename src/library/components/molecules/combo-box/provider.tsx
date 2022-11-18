@@ -6,8 +6,8 @@ import {
   useReducer,
   useRef,
 } from "react";
-import useSubscribableStore from "../../../hooks/use-subscribable-store";
-import { InputOption, InternalInputOption, State, StateActions } from "./types";
+
+import { InputOption, State, StateActions } from "./types";
 import { createInternalOptions } from "./util";
 import { SpringColors } from "../../../types/spring-colors";
 import {
@@ -17,7 +17,6 @@ import {
   shift,
   useFloating,
 } from "@floating-ui/react-dom";
-import useEventListener from "../../../hooks/use-event-listener";
 import useOnClickOutside from "../../../hooks/use-on-click-outside";
 
 import { reducer } from "./reducer";
@@ -42,7 +41,7 @@ export interface ComboBoxProviderProps<
   ValueType extends string | number,
   Name extends string
 > {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   options: InputOption<ValueType>[];
   name: Name;
   color?: keyof SpringColors;

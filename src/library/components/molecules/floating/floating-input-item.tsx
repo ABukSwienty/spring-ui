@@ -9,6 +9,7 @@ interface FloatingInputItemProps
   isSelected?: boolean;
   isCursor?: boolean;
   isDisabled?: boolean;
+  isClickable?: boolean;
   color?: keyof typeof floatingOptionColors;
   children?: React.ReactNode;
 }
@@ -30,6 +31,7 @@ export const FloatingInputItem = ({
   isSelected = false,
   isCursor = false,
   isDisabled = false,
+  isClickable = true,
   color = "brand",
   children,
   className,
@@ -40,19 +42,20 @@ export const FloatingInputItem = ({
   const classNames = useMemo(
     () =>
       setClasses([
-        "h-fit w-full cursor-pointer px-2 py-1 font-light transition-colors duration-150 first:rounded-t-md last:rounded-b-md scroll-m-20",
-        !isSelected && !isDisabled && "hover:bg-gray-200",
+        "h-fit w-full px-2 py-1 font-light transition-colors duration-150 first:rounded-t-md last:rounded-b-md scroll-m-20 select-none",
+        !isSelected && !isDisabled && isClickable && "hover:bg-gray-200",
         isSelected && floatingOptionColors[color],
         isCursor && !isSelected && "bg-gray-200",
         isDisabled && "text-gray-400 cursor-not-allowed",
+        isClickable && "cursor-pointer",
         className,
       ]),
-    [className, color, isCursor, isDisabled, isSelected]
+    [className, color, isCursor, isDisabled, isSelected, isClickable]
   );
 
   const handleClick = () => {
     if (isDisabled) return;
-    if (!onClick || !id) return;
+    if (!id || !onClick) return;
     onClick(id);
   };
 
@@ -63,8 +66,8 @@ export const FloatingInputItem = ({
 
   return (
     <li
-      ref={ref}
       id={id}
+      ref={ref}
       {...rest}
       onClick={handleClick}
       className={classNames}

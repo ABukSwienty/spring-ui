@@ -10,6 +10,9 @@ export interface FloatingInputDropdownProps
   extends Omit<React.ComponentPropsWithRef<"ul">, OmitFramerProps> {
   isOpen: boolean;
   width?: React.CSSProperties["width"];
+  top?: number;
+  left?: number;
+  position?: React.CSSProperties["position"];
 }
 
 const variants: Partial<FramerVariants> = {
@@ -23,27 +26,45 @@ const VARIANTS = setVariants([variants]);
 export const FloatingInputDropdown = React.forwardRef<
   HTMLUListElement,
   FloatingInputDropdownProps
->(({ className, children, isOpen, style, width, ...rest }, ref) => {
-  const classNames = setClasses([
-    "h-fit max-h-48 overflow-scroll rounded-md border bg-white shadow-md origin-[center_-50px]",
-  ]);
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.ul
-          variants={VARIANTS}
-          {...framerVariantProps}
-          className={classNames}
-          {...rest}
-          style={{
-            ...style,
-            width: width ?? "100%",
-          }}
-          ref={ref}
-        >
-          {children}
-        </motion.ul>
-      )}
-    </AnimatePresence>
-  );
-});
+>(
+  (
+    {
+      className,
+      children,
+      isOpen,
+      style,
+      width = "100%",
+      top = 0,
+      left = 0,
+      position = "absolute",
+      ...rest
+    },
+    ref
+  ) => {
+    const classNames = setClasses([
+      "h-fit max-h-48 overflow-scroll rounded-md border bg-white shadow-md origin-[center_-50px]",
+    ]);
+    return (
+      <AnimatePresence>
+        {isOpen && (
+          <motion.ul
+            variants={VARIANTS}
+            {...framerVariantProps}
+            className={classNames}
+            {...rest}
+            style={{
+              ...style,
+              top,
+              left,
+              position,
+              width,
+            }}
+            ref={ref}
+          >
+            {children}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    );
+  }
+);

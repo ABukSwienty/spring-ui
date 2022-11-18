@@ -1,7 +1,7 @@
 import { BeakerIcon } from "@heroicons/react/24/outline";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Button, Input as SpringInput, Select } from "../../../library";
+import { Button, Input as SpringInput } from "../../../library";
 import { wands } from "../../data/wands";
 
 export default {
@@ -98,7 +98,7 @@ TrailingButton.args = {
   ),
 };
 
-export const TrailingSelect = Template.bind({});
+/* export const TrailingSelect = Template.bind({});
 
 TrailingSelect.args = {
   ...DefaultInput.args,
@@ -113,7 +113,7 @@ TrailingSelect.args = {
       />
     </div>
   ),
-};
+}; */
 
 export const LeadingAndIcon = Template.bind({});
 

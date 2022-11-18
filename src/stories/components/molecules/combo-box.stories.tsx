@@ -67,15 +67,26 @@ CustomOptions.args = {
 export const CustomFilter = Template.bind({});
 
 CustomFilter.args = {
-  ...Default.args,
-  customOptions: (option) => (
-    <div className="flex flex-col">
-      <p>{option.label}</p>
-      <p className="text-xs text-gray-500">{option.detail}</p>
-    </div>
-  ),
+  ...CustomOptions.args,
   customFilter: (options, value) =>
     options.filter((option) =>
       option.detail.toLowerCase().includes(value.toLowerCase())
     ),
+};
+
+export const CustomNoResults = Template.bind({});
+
+CustomNoResults.args = {
+  ...CustomOptions.args,
+  customNoResults: (value, handleClose) => (
+    <div className="flex flex-col space-y-3 p-2 text-sm">
+      <p>No results for '{value}'</p>
+      <div className="flex flex-row space-x-3">
+        <Button size="sm" color="light" onClick={handleClose}>
+          Close
+        </Button>
+        <Button size="sm">Add</Button>
+      </div>
+    </div>
+  ),
 };

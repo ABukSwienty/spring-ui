@@ -55,6 +55,7 @@ export const ComboBox = <
   value,
   customOptions,
   customFilter,
+  customNoResults,
   ...rest
 }: ComboBoxProviderProps<ValueType, Name> & ComponentProps) => {
   return (
@@ -68,6 +69,7 @@ export const ComboBox = <
       value={value}
       customOptions={customOptions}
       customFilter={customFilter}
+      customNoResults={customNoResults}
     >
       <Component {...rest} />
     </ComboBoxProvider>

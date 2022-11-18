@@ -19,9 +19,10 @@ export const ComboBoxOptions = <
   const {
     inputRef,
     floating,
-    state: { filteredOptions, isOpen, selectedOption },
+    state: { filteredOptions, isOpen, selectedOption, inputValue },
     dispatch,
     customOptions,
+    customNoResults,
   } = useContext<ComboBoxContextInterface<ValueType, Name>>(ComboBoxContext);
 
   const noResults = filteredOptions.length === 0;
@@ -77,6 +78,17 @@ export const ComboBoxOptions = <
   // handle keyboard events
   useEventListener("keydown", keyDownHandler, inputRef);
 
+  const handleClose = useCallback(
+    () => dispatch({ type: "close" }),
+    [dispatch]
+  );
+
+  const renderNoResults = customNoResults.current ? (
+    customNoResults.current(inputValue, handleClose)
+  ) : (
+    <DefaultNoResults />
+  );
+
   return (
     <>
       <FloatingInputDropdown
@@ -88,7 +100,7 @@ export const ComboBoxOptions = <
         position={floating.strategy}
       >
         {!noResults && renderables}
-        {noResults && <DefaultNoResults />}
+        {noResults && renderNoResults}
       </FloatingInputDropdown>
     </>
   );

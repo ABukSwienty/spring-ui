@@ -41,6 +41,9 @@ export interface ComboBoxContextInterface<
       ) => InternalInputOption<ValueType>[])
     | undefined
   >;
+  customNoResults: React.MutableRefObject<
+    ((value: string, handleClose: () => void) => React.ReactNode) | undefined
+  >;
 }
 
 export const ComboBoxContext = createContext<
@@ -64,6 +67,7 @@ export interface ComboBoxProviderProps<
     options: InternalInputOption<ValueType>[],
     value: string
   ) => InternalInputOption<ValueType>[];
+  customNoResults?: (value: string, handleClose: () => void) => React.ReactNode;
 }
 
 export const ComboBoxProvider = <
@@ -80,6 +84,7 @@ export const ComboBoxProvider = <
   value,
   customOptions,
   customFilter,
+  customNoResults,
 }: ComboBoxProviderProps<ValueType, Name>) => {
   // saved refs
   const internalOptions = useRef(createInternalOptions(options));
@@ -87,6 +92,7 @@ export const ComboBoxProvider = <
   const savedOnChange = useRef(onChange);
   const savedCustomOptions = useRef(customOptions);
   const savedCustomFilter = useRef(customFilter);
+  const savedCustomNoResults = useRef(customNoResults);
 
   const [state, dispatch] = useReducer<
     React.Reducer<State<ValueType>, StateActions<ValueType>>
@@ -143,6 +149,7 @@ export const ComboBoxProvider = <
         dispatch,
         customFilter: savedCustomFilter,
         customOptions: savedCustomOptions,
+        customNoResults: savedCustomNoResults,
       }}
     >
       {children}

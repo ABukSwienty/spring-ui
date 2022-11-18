@@ -54,6 +54,7 @@ export const ComboBox = <
   onChange,
   value,
   customOptions,
+  customFilter,
   ...rest
 }: ComboBoxProviderProps<ValueType, Name> & ComponentProps) => {
   return (
@@ -66,6 +67,7 @@ export const ComboBox = <
       onChange={onChange}
       value={value}
       customOptions={customOptions}
+      customFilter={customFilter}
     >
       <Component {...rest} />
     </ComboBoxProvider>

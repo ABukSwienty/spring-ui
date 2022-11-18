@@ -63,3 +63,19 @@ CustomOptions.args = {
     </div>
   ),
 };
+
+export const CustomFilter = Template.bind({});
+
+CustomFilter.args = {
+  ...Default.args,
+  customOptions: (option) => (
+    <div className="flex flex-col">
+      <p>{option.label}</p>
+      <p className="text-xs text-gray-500">{option.detail}</p>
+    </div>
+  ),
+  customFilter: (options, value) =>
+    options.filter((option) =>
+      option.detail.toLowerCase().includes(value.toLowerCase())
+    ),
+};

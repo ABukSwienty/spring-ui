@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { ComponentProps } from ".";
 import { Input } from "../input";
 import { ComboBoxContextInterface, ComboBoxContext } from "./provider";
@@ -16,7 +16,10 @@ export const ComboBoxFilterableInput = <
     color,
     dispatch,
     state: { options, inputValue },
+    customFilter,
   } = useContext<ComboBoxContextInterface<ValueType, Name>>(ComboBoxContext);
+
+  const filterStrategy = useRef(customFilter.current || defaultFilter);
 
   const handleFocus = useCallback(() => dispatch({ type: "open" }), [dispatch]);
 
@@ -31,7 +34,7 @@ export const ComboBoxFilterableInput = <
     const debouncer = setTimeout(() => {
       dispatch({
         type: "filter",
-        payload: defaultFilter(options, inputValue),
+        payload: filterStrategy.current(options, inputValue),
       });
     }, 300);
 

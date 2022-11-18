@@ -43,6 +43,7 @@ Default.args = {
   placement: "bottom",
   offset: 10,
   isFilterable: true,
+  selectMode: "select",
 };
 
 export const NotFilterable = Template.bind({});
@@ -50,6 +51,14 @@ export const NotFilterable = Template.bind({});
 NotFilterable.args = {
   ...Default.args,
   isFilterable: false,
+};
+
+export const SelectDeselectMode = Template.bind({});
+
+SelectDeselectMode.args = {
+  ...Default.args,
+  isFilterable: false,
+  selectMode: "select-deselect",
 };
 
 export const CustomOptions = Template.bind({});

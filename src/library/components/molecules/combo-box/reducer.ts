@@ -4,6 +4,7 @@ export const reducer = <ValueType extends string | number>(
   state: State<ValueType>,
   action: StateActions<ValueType>
 ): State<ValueType> => {
+  const { selectMode } = state;
   switch (action.type) {
     case "open":
       return { ...state, isOpen: true };
@@ -13,6 +14,18 @@ export const reducer = <ValueType extends string | number>(
 
     case "select":
       const selected = state.options.find((option) => option.id === action.id);
+
+      if (selectMode === "select-deselect") {
+        if (state.selectedOption?.id === action.id) {
+          return {
+            ...state,
+            isOpen: false,
+            selectedOption: undefined,
+            inputValue: "",
+          };
+        }
+      }
+
       return {
         ...state,
         isOpen: false,

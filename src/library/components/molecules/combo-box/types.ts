@@ -16,7 +16,10 @@ export interface State<ValueType> {
   options: InternalInputOption<ValueType>[];
   selectedOption: InternalInputOption<ValueType> | undefined;
   inputValue: string;
+  selectMode: SelectMode;
 }
+
+export type SelectMode = "select" | "select-deselect";
 
 export type StateActions<ValueType> =
   | { type: "open" }

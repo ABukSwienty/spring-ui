@@ -7,7 +7,13 @@ import {
   useRef,
 } from "react";
 
-import { InputOption, InternalInputOption, State, StateActions } from "./types";
+import {
+  InputOption,
+  InternalInputOption,
+  SelectMode,
+  State,
+  StateActions,
+} from "./types";
 import { createInternalOptions } from "./util";
 import { SpringColors } from "../../../types/spring-colors";
 import {
@@ -68,6 +74,7 @@ export interface ComboBoxProviderProps<
     value: string
   ) => InternalInputOption<ValueType>[];
   customNoResults?: (value: string, handleClose: () => void) => React.ReactNode;
+  selectMode?: SelectMode;
 }
 
 export const ComboBoxProvider = <
@@ -85,6 +92,7 @@ export const ComboBoxProvider = <
   customOptions,
   customFilter,
   customNoResults,
+  selectMode = "select",
 }: ComboBoxProviderProps<ValueType, Name>) => {
   // saved refs
   const internalOptions = useRef(createInternalOptions(options));
@@ -106,6 +114,7 @@ export const ComboBoxProvider = <
       filteredOptions: internalOptions.current,
       options: internalOptions.current,
       inputValue: "",
+      selectMode,
     },
     undefined
   );

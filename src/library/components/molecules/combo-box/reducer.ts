@@ -1,7 +1,4 @@
 import { State, StateActions } from "./types";
-import { defaultFilter } from "./util";
-
-export let filterStrategy = defaultFilter;
 
 export const reducer = <ValueType extends string | number>(
   state: State<ValueType>,

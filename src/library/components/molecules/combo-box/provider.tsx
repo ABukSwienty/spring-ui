@@ -7,7 +7,7 @@ import {
   useRef,
 } from "react";
 
-import { InputOption, State, StateActions } from "./types";
+import { InputOption, InternalInputOption, State, StateActions } from "./types";
 import { createInternalOptions } from "./util";
 import { SpringColors } from "../../../types/spring-colors";
 import {
@@ -31,6 +31,9 @@ export interface ComboBoxContextInterface<
   name: Name;
   state: State<ValueType>;
   dispatch: React.Dispatch<StateActions<ValueType>>;
+  customOptions: React.MutableRefObject<
+    ((option: InternalInputOption<ValueType>) => React.ReactNode) | undefined
+  >;
 }
 
 export const ComboBoxContext = createContext<
@@ -49,6 +52,7 @@ export interface ComboBoxProviderProps<
   offset?: number;
   onChange: (value: ValueType | undefined, name: Name) => void;
   value?: ValueType;
+  customOptions?: (option: InternalInputOption<ValueType>) => React.ReactNode;
 }
 
 export const ComboBoxProvider = <
@@ -63,11 +67,13 @@ export const ComboBoxProvider = <
   offset: offsetProps = 10,
   onChange,
   value,
+  customOptions,
 }: ComboBoxProviderProps<ValueType, Name>) => {
   // saved refs
   const internalOptions = useRef(createInternalOptions(options));
   const inputRef = useRef<HTMLInputElement>(null);
   const savedOnChange = useRef(onChange);
+  const savedCustomOptions = useRef(customOptions);
 
   const [state, dispatch] = useReducer<
     React.Reducer<State<ValueType>, StateActions<ValueType>>
@@ -122,6 +128,7 @@ export const ComboBoxProvider = <
         name,
         state,
         dispatch,
+        customOptions: savedCustomOptions,
       }}
     >
       {children}

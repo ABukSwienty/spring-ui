@@ -53,6 +53,7 @@ export const ComboBox = <
   offset,
   onChange,
   value,
+  customOptions,
   ...rest
 }: ComboBoxProviderProps<ValueType, Name> & ComponentProps) => {
   return (
@@ -64,6 +65,7 @@ export const ComboBox = <
       offset={offset}
       onChange={onChange}
       value={value}
+      customOptions={customOptions}
     >
       <Component {...rest} />
     </ComboBoxProvider>

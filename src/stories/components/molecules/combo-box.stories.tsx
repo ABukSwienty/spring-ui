@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useCallback, useState } from "react";
 
-import { ComboBox } from "../../../library";
+import { Button, ComboBox } from "../../../library";
 import { wands } from "../../data/wands";
 
 export default {
@@ -15,15 +15,13 @@ const Template: ComponentStory<typeof ComboBox> = (args) => {
     setSelected(value);
   }, []);
 
+  const handleDynamicallySet = useCallback(() => {
+    setSelected(wands[Math.round(Math.random() * wands.length - 1)].value);
+  }, []);
+
   return (
-    <>
-      <button
-        onClick={() => {
-          setSelected("Walnut");
-        }}
-      >
-        set wands
-      </button>
+    <div className="space-y-8">
+      <Button onClick={handleDynamicallySet}>Dynamically set</Button>
       <div className="w-full md:w-1/3">
         <ComboBox
           {...args}
@@ -32,8 +30,8 @@ const Template: ComponentStory<typeof ComboBox> = (args) => {
           onChange={onChange}
         />
       </div>
-      <p>{selected}</p>
-    </>
+      <p>You selected: {selected}</p>
+    </div>
   );
 };
 
@@ -44,4 +42,24 @@ Default.args = {
   color: "brand",
   placement: "bottom",
   offset: 10,
+  isFilterable: true,
+};
+
+export const NotFilterable = Template.bind({});
+
+NotFilterable.args = {
+  ...Default.args,
+  isFilterable: false,
+};
+
+export const CustomOptions = Template.bind({});
+
+CustomOptions.args = {
+  ...Default.args,
+  customOptions: (option) => (
+    <div className="flex flex-col">
+      <p>{option.label}</p>
+      <p className="text-xs text-gray-500">{option.detail}</p>
+    </div>
+  ),
 };

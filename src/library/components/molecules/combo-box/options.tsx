@@ -1,8 +1,8 @@
 import { useCallback, useContext, useMemo, useState } from "react";
 import useEventListener from "../../../hooks/use-event-listener";
 import { FloatingInputDropdown } from "../floating/floating-input-dropdown";
+import { FloatingInputItem } from "../floating/floating-input-item";
 import DefaultNoResults from "./default-no-results";
-import { ComboBoxItem } from "./item";
 import { ComboBoxContextInterface, ComboBoxContext } from "./provider";
 
 export interface ComboBoxOptionsProps {
@@ -19,24 +19,32 @@ export const ComboBoxOptions = <
   const {
     inputRef,
     floating,
-    state: { filteredOptions, isOpen },
+    state: { filteredOptions, isOpen, selectedOption },
     dispatch,
+    customOptions,
   } = useContext<ComboBoxContextInterface<ValueType, Name>>(ComboBoxContext);
 
   const noResults = filteredOptions.length === 0;
 
+  const handleClick = useCallback(
+    (id: string) => dispatch({ type: "select", id }),
+    [dispatch]
+  );
+
   const renderables = useMemo(() => {
     return filteredOptions.map((option, index) => (
-      <ComboBoxItem
+      <FloatingInputItem
         key={option.id}
         id={option.id}
         isCursor={cursor === index}
         isDisabled={option.disabled ? true : false}
+        isSelected={selectedOption?.id === option.id}
+        onClick={handleClick}
       >
-        {option.label}
-      </ComboBoxItem>
+        {customOptions.current ? customOptions.current(option) : option.label}
+      </FloatingInputItem>
     ));
-  }, [filteredOptions, cursor]);
+  }, [filteredOptions, cursor, selectedOption, handleClick, customOptions]);
 
   // handle keyboard events
   const keyDownHandler = useCallback(

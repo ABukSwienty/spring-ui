@@ -21,11 +21,11 @@ export interface ButtonProps
 }
 
 export const buttonSizes: SpringSizes = {
-  xs: "px-2 py-1 text-xs",
-  sm: "text-sm px-2 py-1",
-  md: "text-sm px-3 py-1.5",
-  lg: "text-base px-5 py-2",
-  xl: "text-lg px-6 py-3",
+  xs: "px-2 py-1 text-xs rounded-md",
+  sm: "text-sm px-2 py-1 rounded-md",
+  md: "text-sm px-3 py-1.5 rounded-lg",
+  lg: "text-base px-5 py-2 rounded-lg",
+  xl: "text-lg px-6 py-3 rounded-lg",
 };
 
 export const iconSizes: SpringSizes = {
@@ -40,7 +40,7 @@ export const buttonColors: SpringColors = {
   brand:
     "bg-brand-700 text-white hover:bg-brand-600 ring-1 ring-brand-600 focus:ring-2 focus:ring-offset-2",
   secondary:
-    "bg-brand-200 text-brand-700 hover:bg-brand-100 ring-1 ring-brand-200 focus:ring-2 focus:ring-offset-2",
+    "text-brand-700 hover:bg-brand-50 ring-1 ring-brand-600 focus:ring-2 focus:ring-offset-2",
   accent:
     "bg-accent-700 text-white hover:bg-accent-600 ring-1 ring-accent-600 focus:ring-2 focus:ring-offset-2",
   success:
@@ -72,7 +72,7 @@ export const Button = ({
 }: ButtonProps) => {
   const buttonVariants = setVariants([BUTTON_VARIANTS]);
   const classNames = setClasses([
-    "rounded-lg transition-shadow duration-100 ease-out outline-none relative",
+    "transition-shadow duration-100 ease-out outline-none relative",
     (LeadingIcon || TrailingIcon) && "flex items-center justify-center",
     buttonSizes[size],
     buttonColors[color],

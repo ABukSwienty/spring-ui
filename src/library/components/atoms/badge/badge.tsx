@@ -12,7 +12,7 @@ export interface BadgeProps extends React.ComponentPropsWithoutRef<"div"> {
 
 export const badgeColor: SpringColors = {
   brand: "bg-brand-50 border border-brand-100 text-brand-900",
-  secondary: "bg-white border border-brand-200 text-brand-900",
+  secondary: "bg-white border border-brand-600 text-brand-900",
   accent: "bg-accent-50 border border-accent-100 text-accent-900",
   success: "bg-success-50 border border-success-100 text-success-900",
   error: "bg-error-50 border border-error-100 text-error-900",
@@ -43,9 +43,9 @@ export const Badge = ({
   ]);
   return (
     <div className={classNames}>
-      {TrailingIcon && <TrailingIcon className="mr-3 h-4 w-4" />}
+      {LeadingIcon && <LeadingIcon className="mr-3 h-4 w-4" />}
       {children}
-      {LeadingIcon && <LeadingIcon className="ml-3 h-4 w-4" />}
+      {TrailingIcon && <TrailingIcon className="ml-3 h-4 w-4" />}
     </div>
   );
 };

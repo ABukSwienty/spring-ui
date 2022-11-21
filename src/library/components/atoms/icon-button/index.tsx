@@ -55,7 +55,7 @@ export const IconButton = ({
     buttonColors[color],
     iconButtonSizes[size],
     className,
-    "transition-shadow duration-100 ease-out outline-none relative",
+    "transition-shadow duration-100 ease-out outline-none relative flex items-center justify-center",
   ]);
 
   if (tooltip)

@@ -19,6 +19,7 @@ const inputIconColor: SpringColors = {
   warning: "group-focus-within:text-warning-500",
   light: "group-focus-within:text-gray-400",
   dark: "group-focus-within:text-gray-800",
+  none: "",
 };
 
 export const InputIcon = React.forwardRef<HTMLDivElement, InputIconProps>(

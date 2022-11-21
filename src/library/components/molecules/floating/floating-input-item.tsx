@@ -23,6 +23,7 @@ export const floatingOptionColors: SpringColors = {
   warning: "bg-warning-500 text-white",
   light: "bg-gray-200",
   dark: "bg-gray-800 text-white",
+  none: "",
 };
 
 export const FloatingInputItem = ({

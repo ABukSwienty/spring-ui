@@ -19,6 +19,7 @@ export const badgeColor: SpringColors = {
   warning: "bg-warning-50 border border-warning-100 text-warning-900",
   light: "bg-gray-50 border border-gray-100 text-gray-900",
   dark: "bg-gray-900 border border-gray-800 text-gray-50",
+  none: "",
 };
 
 export const badgeSize: Pick<SpringSizes, "xs" | "sm" | "md"> = {

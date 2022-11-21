@@ -7,4 +7,5 @@ export interface SpringColors {
   warning: string;
   light: string;
   dark: string;
+  none: string;
 }

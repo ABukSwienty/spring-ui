@@ -24,6 +24,7 @@ export const containerColors: SpringColors = {
   warning: "ring-warning-500",
   light: "ring-gray-200",
   dark: "ring-gray-800",
+  none: "",
 };
 
 const Option = <ValueType,>({
@@ -45,15 +46,12 @@ const Option = <ValueType,>({
       {option.label}
       <IconButton
         size="xs"
-        color={color}
+        color="none"
         icon={XMarkIcon}
         tooltip="clear option"
         className="ml-3"
         onClick={handleClick}
       />
-      {/* <button onClick={handleClick} className="ml-3" aria-label="clear option">
-        <XMarkIcon className="h-4 w-4" />
-      </button> */}
     </Badge>
   );
   return renderable as JSX.Element;

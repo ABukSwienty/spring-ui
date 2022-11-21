@@ -11,6 +11,7 @@ export const trailingIconColors: SpringColors = {
   warning: "bg-warning-50 ring-warning-100",
   light: "bg-gray-50 ring-gray-100",
   dark: "bg-gray-900 ring-gray-800",
+  none: "",
 };
 
 export const InfoCardTrailingIcon = ({

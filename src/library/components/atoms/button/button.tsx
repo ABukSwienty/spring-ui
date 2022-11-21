@@ -52,6 +52,7 @@ export const buttonColors: SpringColors = {
   light:
     "bg-gray-50 text-gray-700 hover:bg-gray-100 ring-1 ring-gray-200 focus:ring-2 focus:ring-accent-600 focus:ring-offset-2",
   dark: "bg-gray-800 text-white hover:bg-gray-700 ring-1 ring-gray-600 focus:ring-2 focus:ring-offset-2",
+  none: "",
 };
 
 export const BUTTON_VARIANTS: Partial<FramerVariants> = {

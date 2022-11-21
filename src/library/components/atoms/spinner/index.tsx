@@ -26,6 +26,7 @@ const spinnerColors: SpringColors = {
   warning: "text-warning-700",
   light: "text-gray-50",
   dark: "text-gray-800",
+  none: "",
 };
 
 export const Spinner = ({

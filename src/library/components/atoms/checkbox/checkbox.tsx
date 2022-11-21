@@ -35,6 +35,7 @@ const checkboxColors: SpringColors = {
   light:
     "checked:border-gray-50 checked:bg-gray-50 focus:ring-2 focus:ring-gray-50",
   dark: "checked:border-gray-800 checked:bg-gray-800 focus:ring-2 focus:ring-gray-800",
+  none: "",
 };
 
 const iconColors: SpringColors = {
@@ -46,6 +47,7 @@ const iconColors: SpringColors = {
   warning: "text-white",
   light: "text-gray-900",
   dark: "text-white",
+  none: "",
 };
 
 const iconSizes: Pick<SpringSizes, "md" | "lg"> = {

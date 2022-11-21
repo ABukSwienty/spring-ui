@@ -10,6 +10,7 @@ export const infoBadgeColors: SpringColors = {
   warning: "bg-warning-700 border border-warning-800 text-white",
   light: "bg-gray-100 border border-gray-200 text-gray-900",
   dark: "bg-gray-800 border border-gray-900 text-white",
+  none: "",
 };
 
 export interface InfoCardBadgeProps {

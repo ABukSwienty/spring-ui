@@ -32,6 +32,7 @@ const inputColors: SpringColors = {
   warning: "focus:ring-warning-500",
   light: "focus:ring-gray-200",
   dark: "focus:ring-gray-800",
+  none: "",
 };
 
 const useRefCallback = <RefType,>(callback: (node: RefType | null) => void) => {

@@ -3,6 +3,7 @@ import React, { useCallback, useContext, useMemo } from "react";
 import { SpringColors } from "../../../types/spring-colors";
 import setClasses from "../../../util/set-classes";
 import { Badge } from "../../atoms/badge/badge";
+import { IconButton } from "../../atoms/icon-button";
 import { MultiComboBoxContext } from "./provider";
 import { InternalInputOption } from "./types";
 
@@ -42,9 +43,17 @@ const Option = <ValueType,>({
   ) : (
     <Badge color={color}>
       {option.label}
-      <button onClick={handleClick} className="ml-3" aria-label="clear option">
+      <IconButton
+        size="xs"
+        color={color}
+        icon={XMarkIcon}
+        tooltip="clear option"
+        className="ml-3"
+        onClick={handleClick}
+      />
+      {/* <button onClick={handleClick} className="ml-3" aria-label="clear option">
         <XMarkIcon className="h-4 w-4" />
-      </button>
+      </button> */}
     </Badge>
   );
   return renderable as JSX.Element;

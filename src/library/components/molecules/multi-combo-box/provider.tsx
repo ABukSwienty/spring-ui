@@ -32,7 +32,12 @@ export interface MultiComboBoxContextInterface<
   state: State<ValueType>;
   dispatch: React.Dispatch<StateActions<ValueType>>;
   customOptions: React.MutableRefObject<
-    ((option: InternalInputOption<ValueType>) => React.ReactNode) | undefined
+    | ((
+        option: InternalInputOption<ValueType>,
+        isSelected: boolean,
+        isCursor: boolean
+      ) => React.ReactNode)
+    | undefined
   >;
   customFilter: React.MutableRefObject<
     | (<ValueType extends string | number>(
@@ -69,7 +74,11 @@ export interface MultiComboBoxProviderProps<
   offset?: number;
   onChange: (value: ValueType[], name: Name) => void;
   value?: ValueType[];
-  customOptions?: (option: InternalInputOption<ValueType>) => React.ReactNode;
+  customOptions?: (
+    option: InternalInputOption<ValueType>,
+    isSelected: boolean,
+    isCursor: boolean
+  ) => React.ReactNode;
   customBadges?: (
     option: InternalInputOption<ValueType>,
     handleDeselect: () => void

@@ -53,7 +53,11 @@ export const MultiComboBoxOptions = <
             onClick={handleClick}
           >
             {customOptions.current
-              ? customOptions.current(option)
+              ? customOptions.current(
+                  option,
+                  isSelected(option.id, selectedOptions),
+                  cursor === index
+                )
               : option.label}
           </FloatingInputItem>
         );

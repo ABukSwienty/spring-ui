@@ -34,12 +34,66 @@ Default.args = {
   name: "wands",
   label: "Wands",
   placeholder: "Select a wand",
-  leadingIcon: BeakerIcon,
   color: "brand",
   placement: "bottom",
   offset: 10,
   isFilterable: true,
   selectMode: "select",
+};
+
+export const LeadingIcon = Template.bind({});
+
+LeadingIcon.args = {
+  ...Default.args,
+  leadingIcon: BeakerIcon,
+};
+
+export const TrailingIcon = Template.bind({});
+
+TrailingIcon.args = {
+  ...Default.args,
+  trailingIcon: BeakerIcon,
+};
+
+export const LeadingInline = Template.bind({});
+
+LeadingInline.args = {
+  ...Default.args,
+  leadingInlineAddOn: "🧙",
+};
+
+export const TrailingInline = Template.bind({});
+
+TrailingInline.args = {
+  ...Default.args,
+  trailingInlineAddOn: "🧙",
+};
+
+export const Leading = Template.bind({});
+
+Leading.args = {
+  ...Default.args,
+  leadingAddOn: "🧙",
+};
+
+export const Trailing = Template.bind({});
+
+Trailing.args = {
+  ...Default.args,
+  trailingAddOn: "🧙",
+};
+
+export const TrailingButton = Template.bind({});
+
+TrailingButton.args = {
+  ...Default.args,
+  trailingElement: (
+    <div className="flex h-full w-full items-center pr-2">
+      <Button color="secondary" size="xs">
+        Expelliarmus!
+      </Button>
+    </div>
+  ),
 };
 
 export const Error = Template.bind({});

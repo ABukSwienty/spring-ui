@@ -10,6 +10,9 @@ export const ComboBoxInput = <
   Name extends string
 >({
   trailingIcon,
+  trailingElement,
+  trailingAddOn,
+  trailingInlineAddOn,
   className,
   ...inputProps
 }: ComponentProps) => {

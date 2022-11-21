@@ -26,6 +26,7 @@ const Component = <ValueType extends string | number, Name extends string>({
 }: ComponentProps) => {
   const { floating } =
     useContext<ComboBoxContextInterface<ValueType, Name>>(ComboBoxContext);
+
   return (
     <div
       ref={floating.reference}

@@ -113,6 +113,7 @@ TrailingComboBox.args = {
         isFilterable={false}
         width="150%"
         placement="bottom-end"
+        leadingInlineAddOn="🧹"
       />
     </div>
   ),

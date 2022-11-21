@@ -61,7 +61,8 @@ export const reducer = <ValueType extends string | number>(
       }
 
       // case 3: value equals the selected option value, do nothing
-      if (value === selectedOption?.value) return state;
+      if (value === selectedOption?.value)
+        return { ...state, inputValue: selectedOption?.label || "" };
 
       return state;
 

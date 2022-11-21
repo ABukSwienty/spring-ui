@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useCallback, useState } from "react";
+import { BeakerIcon } from "@heroicons/react/24/outline";
 
 import { Button, ComboBox } from "../../../library";
 import { wands } from "../../data/wands";
@@ -15,22 +16,14 @@ const Template: ComponentStory<typeof ComboBox> = (args) => {
     setSelected(value);
   }, []);
 
-  const handleDynamicallySet = useCallback(() => {
-    setSelected(wands[Math.round(Math.random() * wands.length - 1)].value);
-  }, []);
-
   return (
-    <div className="space-y-8">
-      <Button onClick={handleDynamicallySet}>Dynamically set</Button>
-      <div className="w-full md:w-1/3">
-        <ComboBox
-          {...args}
-          options={wands}
-          value={selected}
-          onChange={onChange}
-        />
-      </div>
-      <p>You selected: {selected}</p>
+    <div className="w-1/2 lg:w-1/3">
+      <ComboBox
+        {...args}
+        options={wands}
+        value={selected}
+        onChange={onChange}
+      />
     </div>
   );
 };
@@ -39,11 +32,21 @@ export const Default = Template.bind({});
 
 Default.args = {
   name: "wands",
+  label: "Wands",
+  placeholder: "Select a wand",
+  leadingIcon: BeakerIcon,
   color: "brand",
   placement: "bottom",
   offset: 10,
   isFilterable: true,
   selectMode: "select",
+};
+
+export const Error = Template.bind({});
+
+Error.args = {
+  ...Default.args,
+  error: "Please select a wand",
 };
 
 export const NotFilterable = Template.bind({});
@@ -65,10 +68,12 @@ export const CustomOptions = Template.bind({});
 
 CustomOptions.args = {
   ...Default.args,
-  customOptions: (option) => (
+  customOptions: (option, isSelected) => (
     <div className="flex flex-col">
       <p>{option.label}</p>
-      <p className="text-xs text-gray-500">{option.detail}</p>
+      <p className={`text-xs ${isSelected ? "text-white" : "text-gray-500"}`}>
+        {option.detail}
+      </p>
     </div>
   ),
 };
@@ -78,8 +83,10 @@ export const CustomFilter = Template.bind({});
 CustomFilter.args = {
   ...CustomOptions.args,
   customFilter: (options, value) =>
-    options.filter((option) =>
-      option.detail.toLowerCase().includes(value.toLowerCase())
+    options.filter(
+      (option) =>
+        option.detail.toLowerCase().includes(value.toLowerCase()) ||
+        option.label.toLowerCase().includes(value.toLowerCase())
     ),
 };
 

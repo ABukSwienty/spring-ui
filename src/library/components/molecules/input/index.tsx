@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 import { SpringColors } from "../../../types/spring-colors";
 import setClasses from "../../../util/set-classes";
+import { InputText } from "../../atoms/input-texts";
 import { Label } from "../../atoms/label";
 import { AddOn } from "./add-on";
 import { InputIcon } from "./input-icon";
@@ -168,12 +169,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           )}
         </div>
         {error && (
-          <span className="mt-2 block text-sm text-error-500">{error}</span>
+          <InputText variant="error" className="mt-2 block">
+            {error}
+          </InputText>
         )}
         {helperText && !error && (
-          <span className="mt-2 block text-sm font-light text-gray-600">
-            {helperText}
-          </span>
+          <InputText className="mt-2 block">{helperText}</InputText>
         )}
       </div>
     );

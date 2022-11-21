@@ -42,7 +42,13 @@ export const ComboBoxOptions = <
         isSelected={selectedOption?.id === option.id}
         onClick={handleClick}
       >
-        {customOptions.current ? customOptions.current(option) : option.label}
+        {customOptions.current
+          ? customOptions.current(
+              option,
+              selectedOption?.id === option.id,
+              cursor === index
+            )
+          : option.label}
       </FloatingInputItem>
     ));
   }, [filteredOptions, cursor, selectedOption, handleClick, customOptions]);

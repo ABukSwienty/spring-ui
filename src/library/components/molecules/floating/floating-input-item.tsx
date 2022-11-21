@@ -3,7 +3,7 @@ import { SpringColors } from "../../../types/spring-colors";
 import setClasses from "../../../util/set-classes";
 
 interface FloatingInputItemProps
-  extends Omit<React.ComponentPropsWithoutRef<"li">, "onClick"> {
+  extends Omit<React.ComponentPropsWithoutRef<"li">, "onClick" | "tabIndex"> {
   id?: string;
   onClick?: (id: string) => void;
   isSelected?: boolean;
@@ -69,6 +69,7 @@ export const FloatingInputItem = ({
       id={id}
       ref={ref}
       {...rest}
+      tabIndex={0}
       onClick={handleClick}
       className={classNames}
     >

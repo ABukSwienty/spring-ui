@@ -15,13 +15,13 @@ export interface FloatingInputDropdownProps
   position?: React.CSSProperties["position"];
 }
 
-const variants: Partial<FramerVariants> = {
+const VARIANTS: Partial<FramerVariants> = {
   initial: { opacity: 0, rotateX: -20 },
   animate: { opacity: 1, rotateX: 0 },
   exit: { opacity: 0, rotateX: -20, transition: { ease: "anticipate" } },
 };
 
-const VARIANTS = setVariants([variants]);
+const variants = setVariants([VARIANTS]);
 
 export const FloatingInputDropdown = React.forwardRef<
   HTMLUListElement,
@@ -48,7 +48,7 @@ export const FloatingInputDropdown = React.forwardRef<
       <AnimatePresence>
         {isOpen && (
           <motion.ul
-            variants={VARIANTS}
+            variants={variants}
             {...framerVariantProps}
             className={classNames}
             {...rest}

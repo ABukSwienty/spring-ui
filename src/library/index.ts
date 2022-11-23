@@ -6,6 +6,7 @@ export * from "./components/atoms/flex";
 export * from "./components/atoms/icon-button";
 export * from "./components/atoms/info-card";
 export * from "./components/atoms/spinner";
+export * from "./components/atoms/skeleton";
 export * from "./components/molecules/app-card";
 export * from "./components/molecules/button/promise-button";
 export * from "./components/molecules/combo-box";

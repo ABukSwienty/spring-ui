@@ -7,7 +7,7 @@ import {
 } from "@floating-ui/react-dom";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
-import { RefObject, useContext, useRef, useState } from "react";
+import { RefObject, useCallback, useContext, useRef, useState } from "react";
 import framerVariantProps from "../../../constants/framer-variant-props";
 import useOnClickOutside from "../../../hooks/use-on-click-outside";
 import { FramerVariants } from "../../../types/framer-variants";
@@ -40,6 +40,7 @@ export interface DatePickerComponentProps
   > {
   placement?: Placement;
   offset?: number;
+  displayFormat?: (date: Date) => string;
 }
 
 export interface DatePickerProps extends DatePickerComponentProps {
@@ -54,10 +55,13 @@ const VARIANTS: Partial<FramerVariants> = {
 
 const variants = setVariants([VARIANTS]);
 
+const defaultDisplayFormat = (date: Date) => date.toDateString();
+
 const Component = ({
   className,
   placement = "bottom",
   offset: offsetProps = 10,
+  displayFormat,
   ...rest
 }: DatePickerComponentProps) => {
   const { mode, dispatchSelections, displayValue, name, color } =
@@ -65,13 +69,15 @@ const Component = ({
 
   const [show, setShow] = useState(false);
 
-  const handleShow = () => setShow(true);
-  const handleHide = () => setShow(false);
+  const displayStrategy = useRef(displayFormat || defaultDisplayFormat);
 
-  const handleToday = () => {
+  const handleShow = useCallback(() => setShow(true), []);
+  const handleHide = useCallback(() => setShow(false), []);
+
+  const handleToday = useCallback(() => {
     dispatchSelections({ type: "today" });
     setShow(false);
-  };
+  }, [dispatchSelections]);
 
   const classNames = setClasses([className, "cursor-pointer"]);
 
@@ -83,6 +89,8 @@ const Component = ({
 
   useOnClickOutside(refs.reference as RefObject<HTMLElement>, handleHide);
 
+  const display = displayStrategy.current(displayValue);
+
   return (
     <div ref={reference} className="perspective-2xl relative h-fit w-full">
       <Input
@@ -91,7 +99,7 @@ const Component = ({
         onFocus={handleShow}
         leadingIcon={CalendarIcon}
         name={name}
-        value={displayValue.toDateString()}
+        value={display}
         readOnly={true}
         className={classNames}
       />

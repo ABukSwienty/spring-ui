@@ -79,6 +79,7 @@ const Decade = () => {
       <div className="grid w-full grow grid-cols-5 grid-rows-2 gap-1">
         {Array.from({ length: 10 }).map((_, index) => (
           <DecadeItem
+            key={index}
             yearStart={year.start}
             index={index}
             selectionsYear={selections.year}

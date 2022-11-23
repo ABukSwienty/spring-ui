@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import { ComboBox, DatePicker } from "../../../library";
 import { wands } from "../../data/wands";
-import { DefaultInput } from "./input.stories";
 
 export default {
   component: DatePicker,
@@ -32,9 +31,16 @@ Default.args = {
   placement: "bottom",
 };
 
-export const trailingIcon = Template.bind({});
+export const CustomDisplayFormat = Template.bind({});
 
-trailingIcon.args = {
+CustomDisplayFormat.args = {
+  ...Default.args,
+  displayFormat: (date) => date.toISOString().slice(0, 10),
+};
+
+export const TrailingIcon = Template.bind({});
+
+TrailingIcon.args = {
   ...Default.args,
   trailingIcon: ChevronUpDownIcon,
 };
@@ -48,12 +54,15 @@ TrailingComboBox.args = {
       <ComboBox
         name="wand"
         className="!shadow-none !ring-0"
-        options={wands}
+        options={[
+          { value: 1, label: "USD" },
+          { value: 2, label: "EUR" },
+        ]}
         onChange={() => {}}
         isFilterable={false}
-        width="150%"
+        width="100%"
         placement="bottom-end"
-        leadingInlineAddOn="🧹"
+        leadingInlineAddOn="$"
       />
     </div>
   ),

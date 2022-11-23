@@ -18,10 +18,35 @@ const monthsArr = [
   "Dec",
 ];
 
-export interface CalenderProps {}
+const YearItem = ({
+  selectionsMonth,
+  index,
+  month,
+  onClick,
+}: {
+  selectionsMonth: number;
+  index: number;
+  month: string;
+  onClick: (month: number) => void;
+}) => {
+  const { color } = useContext(DatePickerContext);
+
+  const handleClick = useCallback(() => onClick(index), [index, onClick]);
+
+  return (
+    <Item
+      color={color}
+      onClick={handleClick}
+      isActive={selectionsMonth === index ? true : false}
+      size="month"
+    >
+      {month}
+    </Item>
+  );
+};
 
 const Year = () => {
-  const { setMode, selections, dispatchSelections, color } =
+  const { setMode, selections, dispatchSelections } =
     useContext(DatePickerContext);
   const [year, setYear] = useState(selections.year);
 
@@ -56,15 +81,13 @@ const Year = () => {
       />
       <div className="grid w-full grow grid-cols-4 grid-rows-3 gap-1">
         {monthsArr.map((month, index) => (
-          <Item
-            color={color}
-            onClick={() => handleClick(index)}
-            isActive={selections.month === index ? true : false}
-            size="month"
+          <YearItem
             key={index}
-          >
-            {month}
-          </Item>
+            month={month}
+            selectionsMonth={selections.month}
+            index={index}
+            onClick={handleClick}
+          />
         ))}
       </div>
     </>

@@ -22,14 +22,15 @@ export interface IconButtonProps
   color?: keyof typeof buttonColors;
   animations?: Partial<FramerVariants>;
   tooltipPlacement?: Placement;
+  rounded?: boolean;
 }
 
 const iconButtonSizes: SpringSizes = {
-  xs: "p-0.5 rounded-sm",
-  sm: "p-1 rounded-md",
-  md: "p-1.5 rounded-md",
-  lg: "p-2.5 rounded-md",
-  xl: "p-4 rounded-md",
+  xs: "p-0.5",
+  sm: "p-1",
+  md: "p-1.5",
+  lg: "p-2.5",
+  xl: "p-4",
 };
 
 const iconSizes: SpringSizes = {
@@ -48,6 +49,7 @@ export const IconButton = ({
   color = "brand",
   animations,
   tooltipPlacement = "bottom",
+  rounded = false,
   ...rest
 }: IconButtonProps) => {
   const buttonVariants = setVariants([BUTTON_VARIANTS, animations]);
@@ -56,6 +58,7 @@ export const IconButton = ({
     iconButtonSizes[size],
     className,
     "transition-shadow duration-100 ease-out outline-none relative flex items-center justify-center",
+    rounded ? "rounded-full" : "rounded-md",
   ]);
 
   if (tooltip)

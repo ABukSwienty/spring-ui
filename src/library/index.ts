@@ -15,3 +15,4 @@ export * from "./components/molecules/multi-combo-box";
 export * from "./components/molecules/slider";
 export * from "./components/molecules/password-input";
 export * from "./components/molecules/date-picker";
+export * from "./components/molecules/toggle-switch";

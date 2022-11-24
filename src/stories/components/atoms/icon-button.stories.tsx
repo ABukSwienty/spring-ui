@@ -24,5 +24,11 @@ export const WithoutTooltip = Template.bind({});
 
 WithoutTooltip.args = {
   icon: BeakerIcon,
-  tooltipPlacement: "bottom",
+};
+
+export const Rounded = Template.bind({});
+
+Rounded.args = {
+  ...Default.args,
+  rounded: true,
 };

@@ -1,4 +1,4 @@
-import React, { LegacyRef } from "react";
+import React from "react";
 import { FC } from "react";
 import { SpringColors } from "../../../types/spring-colors";
 import setClasses from "../../../util/set-classes";

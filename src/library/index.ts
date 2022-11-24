@@ -16,3 +16,4 @@ export * from "./components/molecules/slider";
 export * from "./components/molecules/password-input";
 export * from "./components/molecules/date-picker";
 export * from "./components/molecules/toggle-switch";
+export * from "./components/molecules/time-line";

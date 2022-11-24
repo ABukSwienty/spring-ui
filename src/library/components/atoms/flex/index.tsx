@@ -1,8 +1,8 @@
 import setClasses from "../../../util/set-classes";
 
-type As = "div" | "section" | "article" | "aside" | "ul";
+export type FlexAs = "div" | "section" | "article" | "aside" | "ul" | "li";
 
-export interface Props<T extends As> {
+export interface GenericFlexProps<T extends FlexAs> {
   className?: string;
   children: React.ReactNode;
   direction?: keyof typeof flexDirection;
@@ -13,8 +13,8 @@ export interface Props<T extends As> {
   as?: T;
 }
 
-export type FlexProps<T extends As> = React.ComponentPropsWithoutRef<As> &
-  Props<T>;
+export type FlexProps<T extends FlexAs> =
+  React.ComponentPropsWithoutRef<FlexAs> & GenericFlexProps<T>;
 
 const flexDirection = {
   rowReverse: "flex-row-reverse",
@@ -55,7 +55,7 @@ const flexAlignSelf = {
   stretch: "place-self-stretch",
 };
 
-export const Flex = <T extends As>({
+export const Flex = <T extends FlexAs>({
   children,
   direction,
   justify,

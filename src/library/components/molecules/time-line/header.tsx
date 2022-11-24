@@ -49,11 +49,6 @@ const pointWrapperSizes: Pick<SpringSizes, "md" | "sm"> = {
   sm: "h-4 w-4 -left-2",
 };
 
-const headingSizes: Pick<SpringSizes, "md" | "sm"> = {
-  md: "text-lg",
-  sm: "text-sm",
-};
-
 export const TimeLineItemHeader = <T extends FlexAs>({
   direction = "row",
   align = "center",
@@ -79,11 +74,6 @@ export const TimeLineItemHeader = <T extends FlexAs>({
     "absolute flex items-center justify-center rounded-full ring-8 ring-white",
   ]);
 
-  const headingClassNames = setClasses([
-    "flex items-center font-semibold text-gray-900",
-    headingSizes[size],
-  ]);
-
   return (
     <>
       <Flex
@@ -103,7 +93,7 @@ export const TimeLineItemHeader = <T extends FlexAs>({
             className={`absolute -left-1.5 h-3 w-3 rounded-full border border-white ${pointWrapperColor[color]}`}
           />
         )}
-        <h3 className={headingClassNames}>{heading}</h3>
+        <h3 className="flex items-center">{heading}</h3>
         {children}
       </Flex>
       {time && (

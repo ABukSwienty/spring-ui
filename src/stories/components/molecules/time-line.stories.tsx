@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof TimeLine> = (args) => (
         time={`Released ${new Date().toDateString()}`}
       />
       <TimeLine.Body>
-        <p>
+        <p className="text-gray-600">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam
           officiis, necessitatibus voluptates, minus mollitia earum provident
           error a, laborum eos sequi. Quas facere nisi suscipit animi eligendi,
@@ -33,7 +33,7 @@ const Template: ComponentStory<typeof TimeLine> = (args) => (
         point={CalendarDaysIcon}
       />
       <TimeLine.Body>
-        <p>
+        <p className="text-gray-600">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam
           officiis, necessitatibus voluptates, minus mollitia earum provident
           error a, laborum eos sequi. Quas facere nisi suscipit animi eligendi,
@@ -49,6 +49,7 @@ const Template: ComponentStory<typeof TimeLine> = (args) => (
         color="error"
         size="sm"
         justify="between"
+        className="text-sm text-gray-700"
       >
         <a href="#" className="text-sm underline underline-offset-1">
           read more
@@ -62,6 +63,7 @@ const Template: ComponentStory<typeof TimeLine> = (args) => (
         time="a few weeks ago"
         color="success"
         justify="between"
+        className="text-xl text-success-700"
       >
         <Button size="sm" color="light" trailingIcon={ArrowRightCircleIcon}>
           See results

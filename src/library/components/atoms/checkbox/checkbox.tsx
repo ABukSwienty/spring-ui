@@ -1,7 +1,10 @@
+import { useCallback, useRef } from "react";
 import { OmitFramerProps } from "../../../types/omit-framer-props";
 import { SpringColors } from "../../../types/spring-colors";
 import { SpringSizes } from "../../../types/spring-sizes";
 import setClasses from "../../../util/set-classes";
+import { BaseFlexProps, Flex } from "../flex";
+import { Label } from "../label";
 
 export interface CheckboxProps
   extends Omit<
@@ -12,6 +15,8 @@ export interface CheckboxProps
   size?: keyof typeof checkboxSizes;
   icon?: "check" | "x";
   label?: string;
+  name: string;
+  isDynamic?: boolean;
 }
 
 const checkboxSizes: Pick<SpringSizes, "md" | "lg"> = {
@@ -66,12 +71,20 @@ export const Checkbox = ({
   icon = "check",
   className,
   label = "",
+  direction = "row",
+  justify,
+  align = "center",
+  alignSelf,
+  wrap,
+  isDynamic = true,
   ...props
-}: CheckboxProps) => {
+}: CheckboxProps & Omit<BaseFlexProps, "children" | "className">) => {
+  const ref = useRef<HTMLInputElement>(null);
   const classNames = setClasses([
     "peer appearance-none rounded border ring-1 ring-transparent transition-[shadow,color,background-color,border-color,text-decoration-color,fill,stroke] duration-100 ease-out focus:ring-offset-2 border-gray-300 bg-gray-100 cursor-pointer",
     checkboxColors[color],
     checkboxSizes[size],
+    className,
   ]);
 
   const iconClassNames = setClasses([
@@ -81,14 +94,33 @@ export const Checkbox = ({
   ]);
 
   const labelClassNames = setClasses([
-    "ml-3 select-none font-medium text-gray-600 cursor-pointer",
+    "select-none font-medium text-gray-600 cursor-pointer",
     labelSizes[size],
   ]);
 
+  const handleClick = useCallback(() => {
+    if (!ref.current) return;
+    if (isDynamic) ref.current.checked = !ref.current.checked;
+  }, [isDynamic]);
+
   return (
-    <div className="flex w-fit flex-row items-center">
-      <div className="relative flex h-fit w-fit items-center justify-center">
-        <input className={classNames} {...props} type="checkbox" />
+    <Flex
+      direction={direction}
+      align={align}
+      justify={justify}
+      alignSelf={alignSelf}
+      wrap={wrap}
+      onClick={handleClick}
+      className={isDynamic ? "cursor-pointer" : ""}
+    >
+      <div className="relative mr-2.5 flex h-fit w-fit items-center justify-center">
+        <input
+          ref={ref}
+          id={props.id ? props.id : props.name}
+          className={classNames}
+          {...props}
+          type="checkbox"
+        />
         {icon === "check" && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -122,12 +154,12 @@ export const Checkbox = ({
           </svg>
         )}
       </div>
-      <label
-        htmlFor={props.id ? props.id : props.name ? props.name : ""}
+      <Label
+        htmlFor={props.id ? props.id : props.name}
         className={labelClassNames}
       >
         {label}
-      </label>
-    </div>
+      </Label>
+    </Flex>
   );
 };

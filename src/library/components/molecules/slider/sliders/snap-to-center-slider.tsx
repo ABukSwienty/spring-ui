@@ -24,6 +24,7 @@ export const SnapToCenterSlider = ({
 
   const maxRight = -((slides.length - 1) * size - position.centralOffset);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setCurrentOffset] = useState(position.offset);
 
   const handleRight = async () => {

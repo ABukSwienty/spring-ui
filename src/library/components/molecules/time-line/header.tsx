@@ -1,12 +1,11 @@
-import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { FC } from "react";
 import { SpringColors } from "../../../types/spring-colors";
 import { SpringSizes } from "../../../types/spring-sizes";
 import setClasses from "../../../util/set-classes";
-import { Flex, FlexAs, GenericFlexProps } from "../../atoms/flex";
+import { BaseFlexProps, Flex } from "../../atoms/flex";
 
-export interface TimeLineItemHeaderProps<T extends FlexAs>
-  extends Omit<GenericFlexProps<T>, "as" | "children"> {
+export interface TimeLineItemHeaderProps
+  extends Omit<BaseFlexProps, "children"> {
   children?: React.ReactNode;
   heading?: string | JSX.Element;
   point?: FC<React.ComponentProps<"svg">>;
@@ -49,7 +48,7 @@ const pointWrapperSizes: Pick<SpringSizes, "md" | "sm"> = {
   sm: "h-4 w-4 -left-2",
 };
 
-export const TimeLineItemHeader = <T extends FlexAs>({
+export const TimeLineItemHeader = ({
   direction = "row",
   align = "center",
   children,
@@ -60,7 +59,7 @@ export const TimeLineItemHeader = <T extends FlexAs>({
   color = "brand",
   size = "md",
   ...flexProps
-}: TimeLineItemHeaderProps<T>) => {
+}: TimeLineItemHeaderProps) => {
   const classNames = setClasses(["w-full", className]);
 
   const pointIconClassNames = setClasses([

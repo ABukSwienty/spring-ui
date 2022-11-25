@@ -6,17 +6,32 @@ export default {
   component: Checkbox,
 } as ComponentMeta<typeof Checkbox>;
 
-//👇 We create a “template” of how args map to rendering
 const Template: ComponentStory<typeof Checkbox> = (args) => (
-  <Checkbox {...args} />
+  <div className="w-1/3">
+    <Checkbox {...args} />
+  </div>
 );
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
-Primary.args = {
+Default.args = {
   id: "checkbox",
   color: "brand",
   label: "Checkbox",
   icon: "check",
   size: "md",
+};
+
+export const Flex = Template.bind({});
+
+Flex.args = {
+  ...Default.args,
+  justify: "between",
+};
+
+export const Dynamic = Template.bind({});
+
+Dynamic.args = {
+  ...Default.args,
+  justify: "between",
 };

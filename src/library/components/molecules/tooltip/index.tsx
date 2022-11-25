@@ -136,9 +136,9 @@ export const TooltipTrigger = React.forwardRef<
 });
 
 const VARIANTS: Partial<FramerVariants> = {
-  initial: { opacity: 0, rotateX: -20 },
-  animate: { opacity: 1, rotateX: 0 },
-  exit: { opacity: 0, rotateX: -20, transition: { ease: "anticipate" } },
+  initial: { opacity: 0, y: -5 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -5, transition: { ease: "anticipate" } },
 };
 
 const variants = setVariants([VARIANTS]);
@@ -158,22 +158,20 @@ export const TooltipContent = React.forwardRef<
     <FloatingPortal>
       <AnimatePresence>
         {state.open && (
-          <div className="perspective-2xl relative h-fit w-full">
-            <motion.div
-              ref={ref}
-              className="origin-[center_-50px] rounded-md bg-gray-700 px-2 py-1 text-center text-sm text-white"
-              variants={variants}
-              {...framerVariantProps}
-              style={{
-                position: state.strategy,
-                top: state.y ?? 0,
-                left: state.x ?? 0,
-                visibility: state.x == null ? "hidden" : "visible",
-                ...props.style,
-              }}
-              {...state.getFloatingProps(props)}
-            />
-          </div>
+          <motion.div
+            ref={ref}
+            className="origin-[center_-50px] rounded-md bg-gray-700 px-2 py-1 text-center text-sm text-white"
+            variants={variants}
+            {...framerVariantProps}
+            style={{
+              position: state.strategy,
+              top: state.y ?? 0,
+              left: state.x ?? 0,
+              visibility: state.x == null ? "hidden" : "visible",
+              ...props.style,
+            }}
+            {...state.getFloatingProps(props)}
+          />
         )}
       </AnimatePresence>
     </FloatingPortal>

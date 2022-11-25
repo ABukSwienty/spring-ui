@@ -23,6 +23,7 @@ export interface IconButtonProps
   animations?: Partial<FramerVariants>;
   tooltipPlacement?: Placement;
   rounded?: boolean;
+  showTooltip?: boolean;
 }
 
 const iconButtonSizes: SpringSizes = {
@@ -50,6 +51,7 @@ export const IconButton = ({
   animations,
   tooltipPlacement = "bottom",
   rounded = false,
+  showTooltip = true,
   ...rest
 }: IconButtonProps) => {
   const buttonVariants = setVariants([BUTTON_VARIANTS, animations]);
@@ -61,7 +63,7 @@ export const IconButton = ({
     rounded ? "rounded-full" : "rounded-md",
   ]);
 
-  if (tooltip)
+  if (tooltip && showTooltip)
     return (
       <Tooltip placement={tooltipPlacement}>
         <TooltipTrigger>

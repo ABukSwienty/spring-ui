@@ -17,6 +17,7 @@ const textSizes: SpringSizes = {
 const textVariants = {
   error: "text-error-500 font-medium",
   helper: "text-gray-600 font-light",
+  cornerHint: "text-gray-600 font-light float-right",
 };
 
 export const InputText = ({

@@ -6,7 +6,7 @@ export interface LabelProps extends React.ComponentPropsWithoutRef<"label"> {
 
 export const Label = ({ children, className, ...props }: LabelProps) => {
   const classNames = setClasses([
-    "text-sm font-medium text-gray-600 block",
+    "text-sm font-medium text-gray-600 inline",
     className,
   ]);
   return (

@@ -24,6 +24,13 @@ DefaultInput.args = {
   color: "brand",
 };
 
+export const CornerHint = Template.bind({});
+
+CornerHint.args = {
+  ...DefaultInput.args,
+  cornerHint: "Corner hint",
+};
+
 export const Disabled = Template.bind({});
 
 Disabled.args = {
@@ -104,7 +111,7 @@ TrailingComboBox.args = {
   ...DefaultInput.args,
   label: "Enter your name and select a wand",
   trailingElement: (
-    <div className="float-right h-full w-32">
+    <div className="h-full w-32">
       <ComboBox
         name="wand"
         className="!shadow-none !ring-0"
@@ -114,6 +121,7 @@ TrailingComboBox.args = {
         width="150%"
         placement="bottom-end"
         leadingInlineAddOn="🧹"
+        offset={5}
       />
     </div>
   ),

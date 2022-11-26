@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 import { SpringColors } from "../../../types/spring-colors";
 import setClasses from "../../../util/set-classes";
+import { Flex } from "../../atoms/flex";
 import { InputText } from "../../atoms/input-texts";
 import { Label } from "../../atoms/label";
 import { AddOn } from "./add-on";
@@ -21,6 +22,7 @@ export interface InputProps
   leadingAddOn?: string;
   trailingAddOn?: string;
   trailingElement?: React.ReactNode;
+  cornerHint?: string;
 }
 
 const inputColors: SpringColors = {
@@ -58,6 +60,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       trailingAddOn,
       trailingElement,
       type = "text",
+      cornerHint,
       ...props
     },
     ref
@@ -99,15 +102,25 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className="group h-fit w-full">
-        {label && (
-          <Label
-            htmlFor={id ? id : name}
-            className="mb-1 transition-colors duration-150 ease-in-out group-focus-within:text-gray-900"
-          >
-            {label}
-          </Label>
-        )}
-        <div className="relative flex h-full w-full flex-row items-center">
+        <Flex
+          direction="row"
+          align="end"
+          justify="between"
+          className={label || cornerHint ? "mb-1" : ""}
+        >
+          {label && (
+            <Label
+              htmlFor={id ? id : name}
+              className="transition-colors duration-150 ease-in-out group-focus-within:text-gray-900"
+            >
+              {label}
+            </Label>
+          )}
+          {cornerHint && (
+            <InputText variant="cornerHint">{cornerHint}</InputText>
+          )}
+        </Flex>
+        <Flex className="relative h-full w-full" direction="row" align="center">
           {leadingIcon && (
             <InputIcon
               ref={leadingRef}
@@ -164,11 +177,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             />
           )}
           {trailingElement && (
-            <div ref={trailingRef} className="absolute right-0">
+            <div ref={trailingRef} className="absolute inset-y-0 right-0">
               {trailingElement}
             </div>
           )}
-        </div>
+        </Flex>
+
         {error && (
           <InputText variant="error" className="mt-2 block">
             {error}

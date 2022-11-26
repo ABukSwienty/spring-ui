@@ -18,3 +18,4 @@ export * from "./components/molecules/date-picker";
 export * from "./components/molecules/toggle-switch";
 export * from "./components/molecules/time-line";
 export * from "./components/molecules/dropdown";
+export * from "./components/molecules/tooltip";

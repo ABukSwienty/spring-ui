@@ -81,6 +81,7 @@ export const MultiComboBox = <
   customFilter,
   customNoResults,
   customBadges,
+  pill,
   ...rest
 }: MultiComboBoxProviderProps<ValueType, Name> & MultiComponentProps) => {
   return (
@@ -96,6 +97,7 @@ export const MultiComboBox = <
       customFilter={customFilter}
       customNoResults={customNoResults}
       customBadges={customBadges}
+      pill={pill}
     >
       <Component {...rest} />
     </MultiComboBoxProvider>

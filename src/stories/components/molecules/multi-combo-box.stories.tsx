@@ -38,6 +38,13 @@ Default.args = {
   isFilterable: true,
 };
 
+export const Pill = Template.bind({});
+
+Pill.args = {
+  ...Default.args,
+  pill: true,
+};
+
 export const Error = Template.bind({});
 
 Error.args = {

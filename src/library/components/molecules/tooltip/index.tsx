@@ -160,7 +160,7 @@ export const TooltipContent = React.forwardRef<
         {state.open && (
           <motion.div
             ref={ref}
-            className="origin-[center_-50px] rounded-md bg-gray-700 px-2 py-1 text-center text-sm text-white"
+            className="max-w-xs origin-[center_-50px] rounded-md bg-gray-700 px-2 py-1 text-center text-sm text-white"
             variants={variants}
             {...framerVariantProps}
             style={{

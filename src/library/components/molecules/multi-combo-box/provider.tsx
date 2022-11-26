@@ -56,6 +56,7 @@ export interface MultiComboBoxContextInterface<
       ) => React.ReactNode)
     | undefined
   >;
+  pill: boolean;
 }
 
 export const MultiComboBoxContext = createContext<
@@ -88,6 +89,7 @@ export interface MultiComboBoxProviderProps<
     value: string
   ) => InternalInputOption<ValueType>[];
   customNoResults?: (value: string, handleClose: () => void) => React.ReactNode;
+  pill?: boolean;
 }
 
 export const MultiComboBoxProvider = <
@@ -106,6 +108,7 @@ export const MultiComboBoxProvider = <
   customFilter,
   customNoResults,
   customBadges,
+  pill = false,
 }: MultiComboBoxProviderProps<ValueType, Name>) => {
   // saved refs
   const internalOptions = useRef(createInternalOptions(options));
@@ -195,6 +198,7 @@ export const MultiComboBoxProvider = <
         customOptions: savedCustomOptions,
         customNoResults: savedCustomNoResults,
         customBadges: savedCustomBadges,
+        pill,
       }}
     >
       {children}

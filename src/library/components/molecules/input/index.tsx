@@ -5,6 +5,7 @@ import { Flex } from "../../atoms/flex";
 import { InputText } from "../../atoms/input-texts";
 import { Label } from "../../atoms/label";
 import { AddOn } from "./add-on";
+import { CornerTip } from "./corner-tip";
 import { InputIcon } from "./input-icon";
 
 export interface InputProps
@@ -23,6 +24,8 @@ export interface InputProps
   trailingAddOn?: string;
   trailingElement?: React.ReactNode;
   cornerHint?: string;
+  cornerElement?: React.ReactNode;
+  cornerTip?: string;
 }
 
 const inputColors: SpringColors = {
@@ -61,6 +64,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       trailingElement,
       type = "text",
       cornerHint,
+      cornerElement,
+      cornerTip,
       ...props
     },
     ref
@@ -106,7 +111,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           direction="row"
           align="end"
           justify="between"
-          className={label || cornerHint ? "mb-1" : ""}
+          className={
+            label || cornerHint || cornerElement || cornerTip ? "mb-1" : ""
+          }
         >
           {label && (
             <Label
@@ -119,6 +126,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {cornerHint && (
             <InputText variant="cornerHint">{cornerHint}</InputText>
           )}
+          {cornerElement && cornerElement}
+          {cornerTip && <CornerTip tip={cornerTip} />}
         </Flex>
         <Flex className="relative h-full w-full" direction="row" align="center">
           {leadingIcon && (

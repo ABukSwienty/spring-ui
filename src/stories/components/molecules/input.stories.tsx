@@ -1,7 +1,14 @@
-import { BeakerIcon } from "@heroicons/react/24/outline";
+import { BeakerIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Button, ComboBox, Input as SpringInput } from "../../../library";
+import {
+  Button,
+  ComboBox,
+  Input as SpringInput,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../../../library";
 import { wands } from "../../data/wands";
 
 export default {
@@ -29,6 +36,24 @@ export const CornerHint = Template.bind({});
 CornerHint.args = {
   ...DefaultInput.args,
   cornerHint: "Corner hint",
+};
+
+export const CornerTip = Template.bind({});
+
+CornerTip.args = {
+  ...DefaultInput.args,
+  cornerTip: "Some more information about the input",
+};
+
+export const CornerElement = Template.bind({});
+
+CornerElement.args = {
+  ...DefaultInput.args,
+  cornerElement: (
+    <Button color="light" size="xs" className="mb-1">
+      click me
+    </Button>
+  ),
 };
 
 export const Disabled = Template.bind({});
@@ -114,7 +139,7 @@ TrailingComboBox.args = {
     <div className="h-full w-32">
       <ComboBox
         name="wand"
-        className="!shadow-none !ring-0"
+        className="rounded-l-none border-l !shadow-none !ring-0"
         options={wands}
         onChange={() => {}}
         isFilterable={false}

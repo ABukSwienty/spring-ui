@@ -8,6 +8,7 @@ export interface BadgeProps extends React.ComponentPropsWithoutRef<"div"> {
   size?: keyof typeof badgeSize;
   leadingIcon?: FC<React.ComponentProps<"svg">>;
   trailingIcon?: FC<React.ComponentProps<"svg">>;
+  pill?: boolean;
 }
 
 export const badgeColor: SpringColors = {
@@ -35,12 +36,14 @@ export const Badge = ({
   trailingIcon: TrailingIcon,
   leadingIcon: LeadingIcon,
   className,
+  pill = false,
 }: BadgeProps) => {
   const classNames = setClasses([
-    "rounded-md w-fit flex items-center",
+    "w-fit flex items-center",
     badgeColor[color],
     badgeSize[size],
     className,
+    pill ? "rounded-full" : "rounded-md",
   ]);
   return (
     <div className={classNames}>

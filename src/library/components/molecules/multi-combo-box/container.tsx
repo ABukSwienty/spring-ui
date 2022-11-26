@@ -1,4 +1,5 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { motion, Variants } from "framer-motion";
 import React, { useCallback, useContext, useMemo } from "react";
 import { SpringColors } from "../../../types/spring-colors";
 import setClasses from "../../../util/set-classes";
@@ -27,6 +28,17 @@ export const containerColors: SpringColors = {
   none: "",
 };
 
+const optionVariants: Variants = {
+  initial: {
+    opacity: 0,
+    x: -10,
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+  },
+};
+
 const Option = <ValueType,>({
   onClick,
 
@@ -37,22 +49,24 @@ const Option = <ValueType,>({
   children: React.ReactNode;
   option: InternalInputOption<ValueType>;
 }) => {
-  const { color, customBadges } = useContext(MultiComboBoxContext);
+  const { color, customBadges, pill } = useContext(MultiComboBoxContext);
   const handleClick = () => onClick(option.id);
   const renderable = customBadges.current ? (
     customBadges.current(option, handleClick)
   ) : (
-    <Badge color={color}>
-      {option.label}
-      <IconButton
-        size="xs"
-        color="none"
-        icon={XMarkIcon}
-        tooltip="clear option"
-        className="ml-3"
-        onClick={handleClick}
-      />
-    </Badge>
+    <motion.div variants={optionVariants} initial="initial" animate="animate">
+      <Badge color={color} pill={pill}>
+        {option.label}
+        <IconButton
+          size="xs"
+          color="none"
+          icon={XMarkIcon}
+          tooltip="clear option"
+          className="ml-3"
+          onClick={handleClick}
+        />
+      </Badge>
+    </motion.div>
   );
   return renderable as JSX.Element;
 };

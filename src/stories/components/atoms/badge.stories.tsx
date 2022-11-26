@@ -10,11 +10,18 @@ export default {
 
 const Template: ComponentStory<typeof Badge> = (args) => <Badge {...args} />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
-Primary.args = {
+Default.args = {
   children: "badge",
   color: "brand",
   size: "xs",
   trailingIcon: BeakerIcon,
+};
+
+export const Pill = Template.bind({});
+
+Pill.args = {
+  ...Default.args,
+  pill: true,
 };

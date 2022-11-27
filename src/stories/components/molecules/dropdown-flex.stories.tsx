@@ -1,4 +1,7 @@
-import { BeakerIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowDownCircleIcon,
+  ArrowUpCircleIcon,
+} from "@heroicons/react/24/outline";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Dropdown } from "../../../library";
@@ -26,7 +29,19 @@ Default.args = {
   minWidth: "256px",
   openMode: "click",
   dropdownPlacement: "bottom",
-  flexChildren: <div>Hey there!</div>,
+  direction: "row",
+  align: "center",
+  className: "text-xs cursor-pointer",
+  flexChildren: (isOpen) => (
+    <>
+      version 3.1{" "}
+      {isOpen ? (
+        <ArrowUpCircleIcon className="ml-3 h-4 w-4" />
+      ) : (
+        <ArrowDownCircleIcon className="ml-3 h-4 w-4" />
+      )}
+    </>
+  ),
 };
 
 export const HoverMode = Template.bind({});

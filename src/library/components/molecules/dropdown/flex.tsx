@@ -10,7 +10,7 @@ export interface DropdownFlexProps
     BaseFlexProps,
     "onClick" | "onMouseLeave" | "onMouseEnter" | "showTooltip"
   > {
-  flexChildren: React.ReactNode;
+  flexChildren: (isOpen: boolean) => JSX.Element;
 }
 
 const Component = ({
@@ -22,11 +22,11 @@ const Component = ({
   const { reference, clickStrategy, hoverStrategy, isOpen } =
     useContext(DropdownContext);
   const classNames = setClasses(["w-full h-full", className]);
-  console.log(isOpen);
+
   return (
     <div ref={reference} className="h-full w-full" {...hoverStrategy.current}>
       <Flex {...rest} className={classNames} {...clickStrategy.current}>
-        {flexChildren}
+        {flexChildren(isOpen)}
       </Flex>
 
       <AnimatePresence>

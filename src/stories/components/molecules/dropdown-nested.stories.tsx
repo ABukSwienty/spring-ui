@@ -19,12 +19,12 @@ const Template: ComponentStory<typeof Dropdown.Button> = (args) => (
             direction="row"
             justify="between"
             align="center"
-            flexChildren={
+            flexChildren={() => (
               <>
                 <p>more options</p>
                 <ChevronRightIcon className="h-4 w-4" />
               </>
-            }
+            )}
             openMode="hover"
             dropdownPlacement="right-start"
             offset={0}
@@ -40,12 +40,12 @@ const Template: ComponentStory<typeof Dropdown.Button> = (args) => (
                 direction="row"
                 justify="between"
                 align="center"
-                flexChildren={
+                flexChildren={() => (
                   <>
                     <p>more options</p>
                     <ChevronRightIcon className="h-4 w-4" />
                   </>
-                }
+                )}
                 openMode="hover"
                 dropdownPlacement="right-start"
                 offset={0}

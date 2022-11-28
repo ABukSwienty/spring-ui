@@ -1,5 +1,5 @@
 import setClasses from "../../../util/set-classes";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Sizes } from "../../../types/sizes";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 
 export interface InputTextProps extends React.ComponentPropsWithoutRef<"span"> {
@@ -7,7 +7,7 @@ export interface InputTextProps extends React.ComponentPropsWithoutRef<"span"> {
   variant?: keyof typeof textVariants;
 }
 
-const textSizes: SpringSizes = {
+const textSizes: Sizes = {
   xs: "text-xs",
   sm: "text-sm",
   md: "text-md",

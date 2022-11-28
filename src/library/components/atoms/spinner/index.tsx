@@ -1,5 +1,5 @@
-import { SpringColors } from "../../../types/spring-colors";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Colors } from "../../../types/colors";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 
 export interface SpinnerProps
@@ -9,7 +9,7 @@ export interface SpinnerProps
   color?: keyof typeof spinnerColors;
 }
 
-const spinnerSizes: SpringSizes = {
+const spinnerSizes: Sizes = {
   xs: "w-3 h-3",
   sm: "w-4 h-4",
   md: "w-8 h-8",
@@ -17,7 +17,7 @@ const spinnerSizes: SpringSizes = {
   xl: "w-12 h-12",
 };
 
-const spinnerColors: SpringColors = {
+const spinnerColors: Colors = {
   brand: "text-brand-700",
   secondary: "text-brand-200",
   accent: "text-accent-700",

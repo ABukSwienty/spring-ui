@@ -1,4 +1,4 @@
-import { SpringColors } from "../../../types/spring-colors";
+import { Colors } from "../../../types/colors";
 import setClasses from "../../../util/set-classes";
 
 export interface ItemProps {
@@ -17,7 +17,7 @@ const itemSize = {
   year: "px-6 py-2.5",
 };
 
-const itemColors: SpringColors = {
+const itemColors: Colors = {
   brand: "bg-brand-700 text-white cursor-pointer",
   secondary: "bg-white ring-2 ring-brand-700 text-brand-700 cursor-pointer",
   accent: "bg-accent-700 text-white cursor-pointer",

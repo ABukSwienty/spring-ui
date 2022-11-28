@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { SpringColors } from "../../../types/spring-colors";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Colors } from "../../../types/colors";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 
 export interface BadgeProps extends React.ComponentPropsWithoutRef<"div"> {
@@ -11,7 +11,7 @@ export interface BadgeProps extends React.ComponentPropsWithoutRef<"div"> {
   pill?: boolean;
 }
 
-export const badgeColor: SpringColors = {
+export const badgeColor: Colors = {
   brand: "bg-brand-50 border border-brand-100 text-brand-900",
   secondary: "bg-white border border-brand-600 text-brand-900",
   accent: "bg-accent-50 border border-accent-100 text-accent-900",
@@ -23,7 +23,7 @@ export const badgeColor: SpringColors = {
   none: "",
 };
 
-export const badgeSize: Pick<SpringSizes, "xs" | "sm" | "md"> = {
+export const badgeSize: Pick<Sizes, "xs" | "sm" | "md"> = {
   xs: "text-xs px-2 py-1",
   sm: "text-sm px-2 py-1",
   md: "text-sm px-2.5 py-1.5",

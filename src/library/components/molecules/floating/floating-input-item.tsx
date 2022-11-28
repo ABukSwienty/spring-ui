@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import { SpringColors } from "../../../types/spring-colors";
+import { Colors } from "../../../types/colors";
 import setClasses from "../../../util/set-classes";
 
 interface FloatingInputItemProps
@@ -14,7 +14,7 @@ interface FloatingInputItemProps
   children?: React.ReactNode;
 }
 
-export const floatingOptionColors: SpringColors = {
+export const floatingOptionColors: Colors = {
   brand: "bg-brand-700 text-white",
   secondary: "bg-brand-200",
   accent: "bg-accent-700 text-white",

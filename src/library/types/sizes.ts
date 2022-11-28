@@ -1,4 +1,4 @@
-export interface AllSpringSizes {
+export interface AllSizes {
   xs: string;
   sm: string;
   md: string;
@@ -14,5 +14,5 @@ export interface AllSpringSizes {
   "9xl": string;
 }
 
-export interface SpringSizes
-  extends Pick<AllSpringSizes, "xs" | "sm" | "md" | "lg" | "xl"> {}
+export interface Sizes
+  extends Pick<AllSizes, "xs" | "sm" | "md" | "lg" | "xl"> {}

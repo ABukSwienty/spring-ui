@@ -1,7 +1,7 @@
 import { useCallback, useRef } from "react";
 import { OmitFramerProps } from "../../../types/omit-framer-props";
-import { SpringColors } from "../../../types/spring-colors";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Colors } from "../../../types/colors";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 import { BaseFlexProps, Flex } from "../flex";
 import { Label } from "../label";
@@ -19,12 +19,12 @@ export interface CheckboxProps
   isDynamic?: boolean;
 }
 
-const checkboxSizes: Pick<SpringSizes, "md" | "lg"> = {
+const checkboxSizes: Pick<Sizes, "md" | "lg"> = {
   md: "w-4 h-4",
   lg: "w-6 h-6",
 };
 
-const checkboxColors: SpringColors = {
+const checkboxColors: Colors = {
   brand:
     "checked:border-brand-700 checked:bg-brand-700 focus:ring-2 focus:ring-brand-700",
   secondary:
@@ -43,7 +43,7 @@ const checkboxColors: SpringColors = {
   none: "",
 };
 
-const iconColors: SpringColors = {
+const iconColors: Colors = {
   brand: "text-white",
   secondary: "text-white",
   accent: "text-white",
@@ -55,12 +55,12 @@ const iconColors: SpringColors = {
   none: "",
 };
 
-const iconSizes: Pick<SpringSizes, "md" | "lg"> = {
+const iconSizes: Pick<Sizes, "md" | "lg"> = {
   md: "w-3 h-3",
   lg: "w-4 h-4",
 };
 
-const labelSizes: Pick<SpringSizes, "md" | "lg"> = {
+const labelSizes: Pick<Sizes, "md" | "lg"> = {
   md: "text-sm",
   lg: "text-base",
 };

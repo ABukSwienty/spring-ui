@@ -9,7 +9,7 @@ import {
 
 import { InputOption, InternalInputOption, State, StateActions } from "./types";
 import { createInternalOptions } from "./util";
-import { SpringColors } from "../../../types/spring-colors";
+import { Colors } from "../../../types/colors";
 import {
   flip,
   offset,
@@ -27,7 +27,7 @@ export interface MultiComboBoxContextInterface<
 > {
   inputRef: React.RefObject<HTMLInputElement>;
   floating: ReturnType<typeof useFloating>;
-  color: keyof SpringColors;
+  color: keyof Colors;
   name: Name;
   state: State<ValueType>;
   dispatch: React.Dispatch<StateActions<ValueType>>;
@@ -70,7 +70,7 @@ export interface MultiComboBoxProviderProps<
   children?: React.ReactNode;
   options: InputOption<ValueType>[];
   name: Name;
-  color?: keyof SpringColors;
+  color?: keyof Colors;
   placement?: Placement;
   offset?: number;
   onChange: (value: ValueType[], name: Name) => void;

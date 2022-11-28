@@ -1,4 +1,4 @@
-export interface SpringColors {
+export interface Colors {
   brand: string;
   secondary: string;
   accent: string;

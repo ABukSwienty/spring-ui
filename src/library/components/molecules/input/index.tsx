@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 import useRefCallback from "../../../hooks/useRefCallback";
-import { SpringColors } from "../../../types/spring-colors";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Colors } from "../../../types/colors";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 import { Flex } from "../../atoms/flex";
 import { InputText } from "../../atoms/input-texts";
@@ -34,7 +34,7 @@ export interface InputProps
   size?: keyof typeof inputSizes;
 }
 
-export const inputColors: SpringColors = {
+export const inputColors: Colors = {
   brand: "focus:ring-brand-700",
   secondary: "focus:ring-brand-400",
   accent: "focus:ring-accent-700",
@@ -46,7 +46,7 @@ export const inputColors: SpringColors = {
   none: "",
 };
 
-export const inputSizes: SpringSizes = {
+export const inputSizes: Sizes = {
   xs: "py-0.5 px-1 text-xs",
   sm: "py-1.5 px-1 text-sm",
   md: "py-2 px-3 text-sm",

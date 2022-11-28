@@ -1,6 +1,6 @@
 import React from "react";
 import { FC } from "react";
-import { SpringColors } from "../../../types/spring-colors";
+import { Colors } from "../../../types/colors";
 import setClasses from "../../../util/set-classes";
 
 export interface InputIconProps {
@@ -10,7 +10,7 @@ export interface InputIconProps {
   isError?: boolean;
 }
 
-const inputIconColor: SpringColors = {
+const inputIconColor: Colors = {
   brand: "group-focus-within:text-brand-700",
   secondary: "group-focus-within:text-brand-400",
   accent: "group-focus-within:text-accent-700",

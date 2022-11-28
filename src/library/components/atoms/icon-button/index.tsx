@@ -4,7 +4,7 @@ import { FC } from "react";
 import framerVariantProps from "../../../constants/framer-variant-props";
 import { FramerVariants } from "../../../types/framer-variants";
 import { OmitFramerProps } from "../../../types/omit-framer-props";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 import setVariants from "../../../util/set-variants";
 import {
@@ -26,7 +26,7 @@ export interface IconButtonProps
   showTooltip?: boolean;
 }
 
-const iconButtonSizes: SpringSizes = {
+const iconButtonSizes: Sizes = {
   xs: "p-0.5",
   sm: "p-1",
   md: "p-1.5",
@@ -34,7 +34,7 @@ const iconButtonSizes: SpringSizes = {
   xl: "p-4",
 };
 
-const iconSizes: SpringSizes = {
+const iconSizes: Sizes = {
   xs: "w-3 h-3",
   sm: "w-5 h-5",
   md: "w-6 h-6",

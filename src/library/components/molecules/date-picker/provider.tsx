@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
-import { SpringColors } from "../../../types/spring-colors";
+import { Colors } from "../../../types/colors";
 import { DateUtils } from "./utils";
 
 type Mode = "month" | "year" | "decade";
@@ -12,7 +12,7 @@ export interface DatePickerContextInterface {
   displayValue: Date;
   setDisplayValue: (value: Date) => void;
   name: string;
-  color: keyof SpringColors;
+  color: keyof Colors;
 }
 
 export const DatePickerContext =
@@ -97,7 +97,7 @@ export interface DatePickerProviderProps {
   value: Date;
   onChange: (name: string, value: Date) => void;
   name: string;
-  color?: keyof SpringColors;
+  color?: keyof Colors;
 }
 
 const DatePickerProvider = ({

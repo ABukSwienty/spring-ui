@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { SpringColors } from "../../../types/spring-colors";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Colors } from "../../../types/colors";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 
 import { Flex } from "../../atoms/flex";
@@ -19,7 +19,7 @@ export interface ToggleSwitchProps<Name extends string> {
   disabled?: boolean;
 }
 
-const toggleSizes: SpringSizes = {
+const toggleSizes: Sizes = {
   xs: "h-3 w-3",
   sm: "h-4 w-4",
   md: "h-5 w-5",
@@ -27,7 +27,7 @@ const toggleSizes: SpringSizes = {
   xl: "h-9 w-9",
 };
 
-const toggleWrapperSizes: SpringSizes = {
+const toggleWrapperSizes: Sizes = {
   xs: "h-4 w-8",
   sm: "h-5 w-10",
   md: "h-6 w-12",
@@ -35,7 +35,7 @@ const toggleWrapperSizes: SpringSizes = {
   xl: "h-10 w-20",
 };
 
-const toggleWrapperColors: SpringColors = {
+const toggleWrapperColors: Colors = {
   brand: "bg-brand-500 ring-brand-200",
   secondary: "bg-brand-200 ring-brand-500",
   accent: "bg-accent-500 ring-accent-200",
@@ -47,7 +47,7 @@ const toggleWrapperColors: SpringColors = {
   none: "",
 };
 
-const wrapperOutlineColors: SpringColors = {
+const wrapperOutlineColors: Colors = {
   brand: "outline-brand-200",
   secondary: "outline-brand-500",
   accent: "outline-accent-200",

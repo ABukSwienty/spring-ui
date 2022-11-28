@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { SpringColors } from "../../../types/spring-colors";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Colors } from "../../../types/colors";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 import { BaseFlexProps, Flex } from "../../atoms/flex";
 
@@ -10,11 +10,11 @@ export interface TimeLineItemHeaderProps
   heading?: string | JSX.Element;
   point?: FC<React.ComponentProps<"svg">>;
   time?: string | JSX.Element;
-  color?: keyof SpringColors;
+  color?: keyof Colors;
   size?: keyof typeof pointIconSizes;
 }
 
-const pointIconColor: SpringColors = {
+const pointIconColor: Colors = {
   brand: "text-brand-50",
   secondary: "text-brand-500",
   accent: "text-accent-500",
@@ -26,7 +26,7 @@ const pointIconColor: SpringColors = {
   none: "",
 };
 
-const pointWrapperColor: SpringColors = {
+const pointWrapperColor: Colors = {
   brand: "bg-brand-500",
   secondary: "bg-brand-200",
   accent: "bg-accent-200",
@@ -38,12 +38,12 @@ const pointWrapperColor: SpringColors = {
   none: "",
 };
 
-const pointIconSizes: Pick<SpringSizes, "md" | "sm"> = {
+const pointIconSizes: Pick<Sizes, "md" | "sm"> = {
   md: "h-4 w-4",
   sm: "h-2.5 w-2.5",
 };
 
-const pointWrapperSizes: Pick<SpringSizes, "md" | "sm"> = {
+const pointWrapperSizes: Pick<Sizes, "md" | "sm"> = {
   md: "h-6 w-6 -left-3",
   sm: "h-4 w-4 -left-2",
 };

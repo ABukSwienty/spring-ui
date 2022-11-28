@@ -1,12 +1,12 @@
 import { SkeletonProps } from ".";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 
 export interface SkeletonUserProps {
   size?: keyof typeof userSizes;
 }
 
-const userSizes: SpringSizes = {
+const userSizes: Sizes = {
   xs: "w-4 h-4",
   sm: "w-5 h-5",
   md: "w-8 h-8",

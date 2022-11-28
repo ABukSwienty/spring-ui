@@ -1,4 +1,4 @@
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 
 export interface SkeletonImageProps {
@@ -6,7 +6,7 @@ export interface SkeletonImageProps {
   mode?: "rect" | "square";
 }
 
-const imageSizes: SpringSizes = {
+const imageSizes: Sizes = {
   xs: "w-4 h-4",
   sm: "w-5 h-5",
   md: "w-8 h-8",
@@ -14,7 +14,7 @@ const imageSizes: SpringSizes = {
   xl: "w-16 h-16",
 };
 
-const imageSizeSqr: SpringSizes = {
+const imageSizeSqr: Sizes = {
   xs: "p-2",
   sm: "p-3",
   md: "p-5",
@@ -22,7 +22,7 @@ const imageSizeSqr: SpringSizes = {
   xl: "p-12",
 };
 
-const imageSizeRect: SpringSizes = {
+const imageSizeRect: Sizes = {
   xs: "py-2 px-4",
   sm: "py-3 px-6",
   md: "py-4 px-8",

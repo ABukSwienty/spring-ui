@@ -1,7 +1,7 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, Variants } from "framer-motion";
 import React, { useCallback, useContext, useMemo } from "react";
-import { SpringColors } from "../../../types/spring-colors";
+import { Colors } from "../../../types/colors";
 import setClasses from "../../../util/set-classes";
 import { Badge } from "../../atoms/badge/badge";
 import { IconButton } from "../../atoms/icon-button";
@@ -16,7 +16,7 @@ export interface MultiComboBoxContainerProps {
   isFilterable: boolean;
 }
 
-export const containerColors: SpringColors = {
+export const containerColors: Colors = {
   brand: "ring-brand-700",
   secondary: "ring-brand-400",
   accent: "ring-accent-700",

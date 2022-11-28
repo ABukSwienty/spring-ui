@@ -3,8 +3,8 @@ import { FC } from "react";
 import framerVariantProps from "../../../constants/framer-variant-props";
 import { FramerVariants } from "../../../types/framer-variants";
 import { OmitFramerProps } from "../../../types/omit-framer-props";
-import { SpringColors } from "../../../types/spring-colors";
-import { SpringSizes } from "../../../types/spring-sizes";
+import { Colors } from "../../../types/colors";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 import setVariants from "../../../util/set-variants";
 import { Spinner } from "../spinner";
@@ -20,7 +20,7 @@ export interface ButtonProps
   trailingIcon?: FC<React.ComponentProps<"svg">>;
 }
 
-export const buttonSizes: SpringSizes = {
+export const buttonSizes: Sizes = {
   xs: "px-2 py-1 text-xs rounded-md",
   sm: "text-sm px-2 py-1 rounded-md",
   md: "text-sm px-3 py-1.5 rounded-lg",
@@ -28,7 +28,7 @@ export const buttonSizes: SpringSizes = {
   xl: "text-lg px-6 py-3 rounded-lg",
 };
 
-export const iconSizes: SpringSizes = {
+export const iconSizes: Sizes = {
   xs: "w-3 h-3",
   sm: "w-4 h-4",
   md: "w-4 h-4",
@@ -36,7 +36,7 @@ export const iconSizes: SpringSizes = {
   xl: "w-6 h-6",
 };
 
-export const buttonColors: SpringColors = {
+export const buttonColors: Colors = {
   brand:
     "bg-brand-700 text-white hover:bg-brand-600 ring-1 ring-brand-600 focus:ring-2 focus:ring-offset-2",
   secondary:
@@ -60,7 +60,9 @@ export const BUTTON_VARIANTS: Partial<FramerVariants> = {
     scale: 0.95,
   },
 };
+
 const buttonVariants = setVariants([BUTTON_VARIANTS]);
+
 export const Button = ({
   size = "md",
   color = "brand",

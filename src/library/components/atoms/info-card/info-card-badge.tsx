@@ -1,7 +1,7 @@
-import { SpringColors } from "../../../types/spring-colors";
+import { Colors } from "../../../types/colors";
 import setClasses from "../../../util/set-classes";
 
-export const infoBadgeColors: SpringColors = {
+export const infoBadgeColors: Colors = {
   brand: "bg-brand-700 border border-brand-800 text-white",
   secondary: "bg-white border border-brand-200 text-brand-900",
   accent: "bg-accent-700 border border-accent-800 text-white",

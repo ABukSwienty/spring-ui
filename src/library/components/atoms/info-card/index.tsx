@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { SpringColors } from "../../../types/spring-colors";
+import { Colors } from "../../../types/colors";
 import setClasses from "../../../util/set-classes";
 import { InfoCardTrailingIcon } from "./trailing-icon";
 import { InfoCardBadge } from "./info-card-badge";
@@ -12,7 +12,7 @@ export interface InfoCardProps extends React.ComponentPropsWithoutRef<"div"> {
   trailingIconWrapperClassName?: string;
 }
 
-export const infoCardColor: SpringColors = {
+export const infoCardColor: Colors = {
   brand: "bg-brand-50 border border-brand-100 text-brand-900",
   secondary: "bg-white border border-brand-200 text-brand-900",
   accent: "bg-accent-50 border border-accent-100 text-accent-900",

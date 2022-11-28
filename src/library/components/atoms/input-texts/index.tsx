@@ -1,5 +1,6 @@
 import setClasses from "../../../util/set-classes";
 import { SpringSizes } from "../../../types/spring-sizes";
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 
 export interface InputTextProps extends React.ComponentPropsWithoutRef<"span"> {
   size?: keyof typeof textSizes;
@@ -15,7 +16,7 @@ const textSizes: SpringSizes = {
 };
 
 const textVariants = {
-  error: "text-error-500 font-medium",
+  error: "text-error-500 font-medium flex flex-row items-center",
   helper: "text-gray-600 font-light",
   cornerHint: "text-gray-600 font-light float-right",
 };
@@ -35,6 +36,9 @@ export const InputText = ({
 
   return (
     <span className={classNames} {...rest}>
+      {variant === "error" && (
+        <ExclamationCircleIcon className="mr-2 h-5 w-5" />
+      )}
       {children}
     </span>
   );

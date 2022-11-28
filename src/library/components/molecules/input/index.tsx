@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useState } from "react";
+import useRefCallback from "../../../hooks/useRefCallback";
 import { SpringColors } from "../../../types/spring-colors";
 import setClasses from "../../../util/set-classes";
 import { Flex } from "../../atoms/flex";
@@ -28,7 +29,7 @@ export interface InputProps
   cornerTip?: string;
 }
 
-const inputColors: SpringColors = {
+export const inputColors: SpringColors = {
   brand: "focus:ring-brand-700",
   secondary: "focus:ring-brand-400",
   accent: "focus:ring-accent-700",
@@ -38,11 +39,6 @@ const inputColors: SpringColors = {
   light: "focus:ring-gray-200",
   dark: "focus:ring-gray-800",
   none: "",
-};
-
-const useRefCallback = <RefType,>(callback: (node: RefType | null) => void) => {
-  const ref = useCallback(callback, [callback]);
-  return { ref };
 };
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(

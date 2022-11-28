@@ -20,3 +20,4 @@ export * from "./components/molecules/time-line";
 export * from "./components/molecules/dropdown";
 export * from "./components/molecules/tooltip";
 export * from "./components/molecules/formatted-input";
+export * from "./components/molecules/text-area";

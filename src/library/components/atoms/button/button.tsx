@@ -60,7 +60,7 @@ export const BUTTON_VARIANTS: Partial<FramerVariants> = {
     scale: 0.95,
   },
 };
-
+const buttonVariants = setVariants([BUTTON_VARIANTS]);
 export const Button = ({
   size = "md",
   color = "brand",
@@ -71,7 +71,6 @@ export const Button = ({
   isLoading = false,
   ...props
 }: ButtonProps) => {
-  const buttonVariants = setVariants([BUTTON_VARIANTS]);
   const classNames = setClasses([
     "transition-shadow duration-100 ease-out outline-none relative",
     (LeadingIcon || TrailingIcon) && "flex items-center justify-center",

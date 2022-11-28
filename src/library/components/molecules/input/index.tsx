@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 import useRefCallback from "../../../hooks/useRefCallback";
 import { SpringColors } from "../../../types/spring-colors";
+import { SpringSizes } from "../../../types/spring-sizes";
 import setClasses from "../../../util/set-classes";
 import { Flex } from "../../atoms/flex";
 import { InputText } from "../../atoms/input-texts";
@@ -10,7 +11,10 @@ import { CornerTip } from "./corner-tip";
 import { InputIcon } from "./input-icon";
 
 export interface InputProps
-  extends Omit<React.ComponentPropsWithoutRef<"input">, "children" | "style"> {
+  extends Omit<
+    React.ComponentPropsWithoutRef<"input">,
+    "children" | "style" | "size"
+  > {
   label?: string;
   id?: string;
   name: string;
@@ -27,6 +31,7 @@ export interface InputProps
   cornerHint?: string;
   cornerElement?: React.ReactNode;
   cornerTip?: string;
+  size?: keyof typeof inputSizes;
 }
 
 export const inputColors: SpringColors = {
@@ -39,6 +44,14 @@ export const inputColors: SpringColors = {
   light: "focus:ring-gray-200",
   dark: "focus:ring-gray-800",
   none: "",
+};
+
+export const inputSizes: SpringSizes = {
+  xs: "py-0.5 px-1 text-xs",
+  sm: "py-1.5 px-1 text-sm",
+  md: "py-2 px-3 text-sm",
+  lg: "py-4 px-2.5 text-base",
+  xl: "py-4 px-3 text-lg",
 };
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -62,6 +75,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       cornerHint,
       cornerElement,
       cornerTip,
+      size = "md",
       ...props
     },
     ref
@@ -93,12 +107,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const { ref: trailingRef } = useRefCallback(handleTrailing);
 
     const classNames = setClasses([
-      "peer w-full appearance-none rounded-md py-2 px-3 text-sm font-light ring-1 transition-shadow duration-150 ease-in-out focus:outline-none focus:ring-2 shadow-sm text-ellipsis",
+      "peer w-full appearance-none rounded-md text-sm font-light ring-1 transition-shadow duration-150 ease-in-out focus:outline-none focus:ring-2 shadow-sm text-ellipsis",
       !error && "ring-gray-200",
       !error && inputColors[color],
       error && inputColors["error"] + " ring-error-500",
       className,
       props.disabled && "cursor-not-allowed bg-gray-100",
+      inputSizes[size],
     ]);
 
     return (

@@ -1,14 +1,7 @@
-import { BeakerIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
+import { BeakerIcon } from "@heroicons/react/24/outline";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import {
-  Button,
-  ComboBox,
-  Input as SpringInput,
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "../../../library";
+import { Button, ComboBox, Input as SpringInput } from "../../../library";
 import { wands } from "../../data/wands";
 
 export default {
@@ -29,6 +22,7 @@ DefaultInput.args = {
   id: "input",
   placeholder: "Harry Potter",
   color: "brand",
+  size: "md",
 };
 
 export const CornerHint = Template.bind({});

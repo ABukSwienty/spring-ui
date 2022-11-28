@@ -1,6 +1,6 @@
 import { FC, useCallback, useRef, useState } from "react";
 import { Flex, inputColors } from "../../..";
-import useRefCallback from "../../../hooks/useRefCallback";
+import useRefCallback from "../../../hooks/use-ref-callback";
 import setClasses from "../../../util/set-classes";
 import { InputText } from "../../atoms/input-texts";
 import { Label } from "../../atoms/label";

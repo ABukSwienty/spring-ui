@@ -45,12 +45,14 @@ const Option = <ValueType,>({
   option,
 }: {
   onClick: (id: string) => void;
-
   children: React.ReactNode;
   option: InternalInputOption<ValueType>;
 }) => {
   const { color, customBadges, pill } = useContext(MultiComboBoxContext);
-  const handleClick = () => onClick(option.id);
+  const handleClick = useCallback(
+    () => onClick(option.id),
+    [onClick, option.id]
+  );
   const renderable = customBadges.current ? (
     customBadges.current(option, handleClick)
   ) : (

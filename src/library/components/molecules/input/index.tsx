@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useState } from "react";
-import useRefCallback from "../../../hooks/useRefCallback";
+import useRefCallback from "../../../hooks/use-ref-callback";
 import { Colors } from "../../../types/colors";
 import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";

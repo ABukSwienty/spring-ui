@@ -71,10 +71,11 @@ export const Button = ({
   children,
   className,
   isLoading = false,
+  type = "button",
   ...props
 }: ButtonProps) => {
   const classNames = setClasses([
-    "transition-shadow duration-100 ease-out outline-none relative",
+    "transition-shadow duration-100 ease-out outline-none relative disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none",
     (LeadingIcon || TrailingIcon) && "flex items-center justify-center",
     buttonSizes[size],
     buttonColors[color],
@@ -86,10 +87,11 @@ export const Button = ({
   ]);
   return (
     <motion.button
-      variants={buttonVariants}
+      variants={!props.disabled ? buttonVariants : undefined}
       {...framerVariantProps}
       className={classNames}
       {...props}
+      type={type}
     >
       {LeadingIcon && (
         <div className={iconClassNames}>

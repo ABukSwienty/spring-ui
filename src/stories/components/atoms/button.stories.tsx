@@ -11,10 +11,17 @@ export default {
 //👇 We create a “template” of how args map to rendering
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
-Primary.args = {
+Default.args = {
   children: "Button",
   size: "md",
   trailingIcon: BeakerIcon,
+};
+
+export const Disabled = Template.bind({});
+
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
 };

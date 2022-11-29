@@ -86,7 +86,7 @@ export const Pagination = ({
   );
 
   const handlePrevPage = useCallback(
-    () => onPageChange(Math.max(currentPage - 1, 0)),
+    () => onPageChange(Math.max(currentPage - 1, 1)),
     [currentPage, onPageChange]
   );
 
@@ -96,6 +96,7 @@ export const Pagination = ({
         onClick={handlePrevPage}
         color={color}
         leadingIcon={showIcons ? ChevronLeftIcon : undefined}
+        disabled={currentPage === 1}
       >
         {previousLabel}
       </ButtonGroup.Button>
@@ -131,6 +132,7 @@ export const Pagination = ({
         onClick={handleNextPage}
         color={color}
         trailingIcon={showIcons ? ChevronRightIcon : undefined}
+        disabled={currentPage === totalPages}
       >
         {nextLabel}
       </ButtonGroup.Button>

@@ -22,3 +22,4 @@ export * from "./components/molecules/text-area";
 export * from "./components/molecules/time-line";
 export * from "./components/molecules/toggle-switch";
 export * from "./components/molecules/tooltip";
+export * from "./components/molecules/pagination";

@@ -59,7 +59,7 @@ export const IconButton = ({
     buttonColors[color],
     iconButtonSizes[size],
     className,
-    "transition-shadow duration-100 ease-out outline-none relative flex items-center justify-center",
+    "transition-shadow duration-100 ease-out outline-none relative flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none",
     rounded ? "rounded-full" : "rounded-md",
   ]);
 
@@ -68,7 +68,7 @@ export const IconButton = ({
       <Tooltip placement={tooltipPlacement}>
         <TooltipTrigger>
           <motion.button
-            variants={buttonVariants}
+            variants={rest.disabled ? undefined : buttonVariants}
             {...framerVariantProps}
             aria-label={tooltip}
             className={classNames}

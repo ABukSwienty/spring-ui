@@ -107,12 +107,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const { ref: trailingRef } = useRefCallback(handleTrailing);
 
     const classNames = setClasses([
-      "peer w-full appearance-none rounded-md text-sm font-light ring-1 transition-shadow duration-150 ease-in-out focus:outline-none focus:ring-2 shadow-sm text-ellipsis",
+      "peer w-full appearance-none rounded-md text-sm font-light ring-1 transition-shadow duration-150 ease-in-out focus:outline-none focus:ring-2 shadow-sm text-ellipsis disabled:cursor-not-allowed disabled:bg-gray-100 disabled:bg-opacity-50",
       !error && "ring-gray-200",
       !error && inputColors[color],
       error && inputColors["error"] + " ring-error-500",
       className,
-      props.disabled && "cursor-not-allowed bg-gray-100",
       inputSizes[size],
     ]);
 

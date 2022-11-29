@@ -32,3 +32,10 @@ Rounded.args = {
   ...Default.args,
   rounded: true,
 };
+
+export const Disabled = Template.bind({});
+
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
+};

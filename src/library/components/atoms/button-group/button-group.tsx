@@ -24,7 +24,7 @@ const borderColors: Colors = {
   error: "border-error-500",
   warning: "border-warning-500",
   light: "border-gray-200",
-  dark: "border-gray-800",
+  dark: "border-gray-500",
   none: "",
 };
 

@@ -11,7 +11,7 @@ export interface PaginationProps {
   totalPages: number;
   take?: number;
   onPageChange: (page: number) => void;
-  icons?: boolean;
+  showIcons?: boolean;
   previousLabel?: string;
   nextLabel?: string;
   color?: ButtonProps["color"];
@@ -58,7 +58,7 @@ export const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
-  icons = true,
+  showIcons = true,
   previousLabel = "Previous",
   nextLabel = "Next",
   take = 3,
@@ -95,7 +95,7 @@ export const Pagination = ({
       <ButtonGroup.Button
         onClick={handlePrevPage}
         color={color}
-        leadingIcon={icons ? ChevronLeftIcon : undefined}
+        leadingIcon={showIcons ? ChevronLeftIcon : undefined}
       >
         {previousLabel}
       </ButtonGroup.Button>
@@ -130,7 +130,7 @@ export const Pagination = ({
       <ButtonGroup.Button
         onClick={handleNextPage}
         color={color}
-        trailingIcon={icons ? ChevronRightIcon : undefined}
+        trailingIcon={showIcons ? ChevronRightIcon : undefined}
       >
         {nextLabel}
       </ButtonGroup.Button>

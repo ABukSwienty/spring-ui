@@ -33,7 +33,7 @@ Default.args = {
   take: 3,
   previousLabel: "Previous",
   nextLabel: "Next",
-  icons: true,
+  showIcons: true,
 };
 
 export const Ellipsis = Template.bind({});
@@ -62,5 +62,5 @@ export const NoIcon = Template.bind({});
 
 NoIcon.args = {
   ...Default.args,
-  icons: false,
+  showIcons: false,
 };

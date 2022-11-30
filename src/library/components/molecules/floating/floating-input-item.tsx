@@ -62,7 +62,10 @@ export const FloatingInputItem = ({
 
   useEffect(() => {
     if (!ref.current) return;
-    if (isCursor) ref.current.scrollIntoView();
+    if (isCursor)
+      ref.current.scrollIntoView({
+        block: "nearest",
+      });
   }, [isCursor]);
 
   return (

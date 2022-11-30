@@ -47,6 +47,7 @@ export const Component = <Name extends string>({
   cornerTip,
   helperText,
   undoable = true,
+  placeholder = "Press ⏎ or ⇥ to add",
   ...rest
 }: MultiInputProps) => {
   const {
@@ -165,6 +166,7 @@ export const Component = <Name extends string>({
           } placeholder:text-gray-900`}
           value={inputValue}
           onChange={handleChange}
+          placeholder={placeholder}
           {...rest}
         />
       </div>

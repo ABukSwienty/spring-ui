@@ -11,7 +11,7 @@ export default {
 const Template: ComponentStory<typeof MultiComboBox> = (args) => {
   const [selected, setSelected] = useState<string[]>(["Ash", "Hawthorn wood"]);
 
-  const onChange = useCallback((value: string[], name: string) => {
+  const onChange = useCallback((name: string, value: string[]) => {
     setSelected(value);
   }, []);
 

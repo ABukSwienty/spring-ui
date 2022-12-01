@@ -2,6 +2,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, Variants } from "framer-motion";
 import { useCallback, useContext } from "react";
 import { containerColors } from ".";
+import { Sizes } from "../../../types/sizes";
 import { Badge } from "../../atoms/badge/badge";
 import { IconButton } from "../../atoms/icon-button";
 import { MultiInputContext } from "./provider";
@@ -23,12 +24,14 @@ export const MultiInputOption = ({
   onClick,
   color,
   pill,
+  size,
 }: {
   id: string;
   value: string;
   onClick: (id: string) => void;
   color: keyof typeof containerColors;
   pill: boolean;
+  size: keyof Sizes;
 }) => {
   const { customBadges } = useContext(MultiInputContext);
   const handleClick = useCallback(() => onClick(id), [id, onClick]);
@@ -36,7 +39,7 @@ export const MultiInputOption = ({
     customBadges.current({ id, value }, handleClick)
   ) : (
     <motion.div variants={optionVariants} initial="initial" animate="animate">
-      <Badge color={color} pill={pill}>
+      <Badge color={color} pill={pill} size={size}>
         {value}
         <IconButton
           size="xs"

@@ -23,16 +23,18 @@ export const badgeColor: Colors = {
   none: "",
 };
 
-export const badgeSize: Pick<Sizes, "xs" | "sm" | "md"> = {
-  xs: "text-xs px-2 py-1",
-  sm: "text-sm px-2 py-1",
-  md: "text-sm px-2.5 py-1.5",
+export const badgeSize: Sizes = {
+  xs: "text-xs px-1 py-0.5",
+  sm: "text-xs px-2 py-1",
+  md: "text-sm px-2 py-1",
+  lg: "text-base px-2 py-2",
+  xl: "text-lg px-2 py-2",
 };
 
 export const Badge = ({
   children,
   color = "brand",
-  size = "xs",
+  size = "sm",
   trailingIcon: TrailingIcon,
   leadingIcon: LeadingIcon,
   className,

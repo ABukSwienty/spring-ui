@@ -12,7 +12,7 @@ export default {
 const Template: ComponentStory<typeof ComboBox> = (args) => {
   const [selected, setSelected] = useState<string | undefined>();
 
-  const onChange = useCallback((value: string | undefined, name: string) => {
+  const onChange = useCallback((name: string, value: string | undefined) => {
     setSelected(value);
   }, []);
 

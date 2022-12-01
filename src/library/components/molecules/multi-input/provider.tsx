@@ -34,7 +34,7 @@ export interface MultiInputProviderProps<Name extends string> {
   children: React.ReactNode;
   value?: string[];
   name: Name;
-  onChange: (value: string[], name: Name) => void;
+  onChange: (name: Name, value: string[]) => void;
   dispatchKeys?: Array<Omit<KeyboardEvent["key"], "Backspace">>;
   color?: keyof typeof containerColors;
   customValidator?: CustomValidator;
@@ -101,8 +101,8 @@ export const MultiInputProvider = <Name extends string>({
   // handle external onChange
   useEffect(() => {
     savedOnChange.current(
-      state.options.map((option) => option.value),
-      name
+      name,
+      state.options.map((option) => option.value)
     );
   }, [state.options, name]);
 

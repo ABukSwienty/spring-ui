@@ -71,7 +71,7 @@ export interface ComboBoxProviderProps<
   color?: keyof Colors;
   placement?: Placement;
   offset?: number;
-  onChange: (value: ValueType | undefined, name: Name) => void;
+  onChange: (name: Name, value: ValueType | undefined) => void;
   value?: ValueType;
   customOptions?: (
     option: InternalInputOption<ValueType>,
@@ -144,7 +144,7 @@ export const ComboBoxProvider = <
 
   // handle onChange
   useEffect(() => {
-    savedOnChange.current(state.selectedOption?.value, name);
+    savedOnChange.current(name, state.selectedOption?.value);
   }, [state.selectedOption, name]);
 
   // handle external options value

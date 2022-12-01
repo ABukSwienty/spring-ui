@@ -73,7 +73,7 @@ export interface MultiComboBoxProviderProps<
   color?: keyof Colors;
   placement?: Placement;
   offset?: number;
-  onChange: (value: ValueType[], name: Name) => void;
+  onChange: (name: Name, value: ValueType[]) => void;
   value?: ValueType[];
   customOptions?: (
     option: InternalInputOption<ValueType>,
@@ -166,8 +166,8 @@ export const MultiComboBoxProvider = <
   useEffect(() => {
     if (firstMount.current) return;
     savedOnChange.current(
-      state.selectedOptions.map((option) => option.value),
-      name
+      name,
+      state.selectedOptions.map((option) => option.value)
     );
     floating.update();
   }, [state.selectedOptions, name, floating]);

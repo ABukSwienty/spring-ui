@@ -11,7 +11,7 @@ const Template: ComponentStory<typeof MultiInput> = (args) => {
   const [state, setState] = useState<string[]>([]);
 
   const handleChange = useCallback(
-    (value: string[], name: string) => setState(value),
+    (name: string, value: string[]) => setState(value),
     []
   );
 

@@ -1,7 +1,8 @@
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { useCallback, useContext, useEffect, useMemo } from "react";
-import { Button, IconButton } from "../../..";
+import { IconButton } from "../../..";
 import { Colors } from "../../../types/colors";
+import { Sizes } from "../../../types/sizes";
 import setClasses from "../../../util/set-classes";
 import { Flex } from "../../atoms/flex";
 import { InputText } from "../../atoms/input-texts";
@@ -16,7 +17,10 @@ import {
 } from "./provider";
 
 export interface MultiInputProps
-  extends Omit<React.ComponentPropsWithoutRef<"input">, "value" | "onChange"> {
+  extends Omit<
+    React.ComponentPropsWithoutRef<"input">,
+    "value" | "onChange" | "size"
+  > {
   error?: string;
   disabled?: boolean;
   label?: string;
@@ -24,6 +28,7 @@ export interface MultiInputProps
   cornerTip?: string;
   helperText?: string;
   undoable?: boolean;
+  size?: keyof typeof containerSizes;
 }
 
 export const containerColors: Colors = {
@@ -38,6 +43,14 @@ export const containerColors: Colors = {
   none: "",
 };
 
+export const containerSizes: Sizes = {
+  xs: "py-0.5 px-1 min-h-[20px] text-xs",
+  sm: "py-1.5 px-1 min-h-[32px] text-sm",
+  md: "py-2 px-3 min-h-[36px] text-sm",
+  lg: "py-4 px-2.5 min-h-[56px] text-base",
+  xl: "py-4 px-3 min-h-[60px] text-lg",
+};
+
 export const Component = <Name extends string>({
   error,
   disabled,
@@ -48,6 +61,7 @@ export const Component = <Name extends string>({
   helperText,
   undoable = true,
   placeholder = "Press ⏎ or ⇥ to add",
+  size = "md",
   ...rest
 }: MultiInputProps) => {
   const {
@@ -77,15 +91,16 @@ export const Component = <Name extends string>({
   const classNames = useMemo(
     () =>
       setClasses([
-        "group flex h-fit min-h-[36px] ring-1 flex-wrap items-center w-full rounded-md py-1 px-3 text-sm font-light transition-shadow duration-150 ease-in-out shadow-sm gap-2 focus-within:ring-2",
+        "group flex h-fit ring-1 flex-wrap items-center w-full rounded-md font-light transition-shadow duration-150 ease-in-out shadow-sm gap-2 focus-within:ring-2",
         !error && containerColors[color],
         !error && "ring-gray-200",
         error && containerColors["error"] + " ring-error-500",
         className,
         disabled && "cursor-not-allowed bg-gray-100",
         !disabled && "cursor-text",
+        containerSizes[size],
       ]),
-    [color, className, disabled, error]
+    [color, className, disabled, error, size]
   );
 
   const renderables = useMemo(() => {
@@ -97,9 +112,10 @@ export const Component = <Name extends string>({
         value={value}
         color={color}
         onClick={handleRemoveOption}
+        size={size}
       />
     ));
-  }, [options, handleRemoveOption, color, pill]);
+  }, [options, handleRemoveOption, color, pill, size]);
 
   useEffect(() => {
     if (inputRef.current && showInput) {

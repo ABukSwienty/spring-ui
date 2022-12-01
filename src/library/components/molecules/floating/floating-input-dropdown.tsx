@@ -42,7 +42,7 @@ export const FloatingInputDropdown = React.forwardRef<
     ref
   ) => {
     const classNames = setClasses([
-      "h-fit max-h-48 overflow-scroll rounded-md border bg-white shadow-md origin-[center_-50px] z-50",
+      "h-fit max-h-48 overflow-scroll rounded-md border bg-white shadow-md origin-[center_-50px]",
     ]);
     return (
       <AnimatePresence>

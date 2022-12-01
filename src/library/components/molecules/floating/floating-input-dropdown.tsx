@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import framerVariantProps from "../../../constants/framer-variant-props";
-import { FramerVariants } from "../../../types/framer-variants";
+import { SWING_VARIANTS } from "../../../constants/swing-variants";
+
 import { OmitFramerProps } from "../../../types/omit-framer-props";
 import setClasses from "../../../util/set-classes";
-import setVariants from "../../../util/set-variants";
 
 export interface FloatingInputDropdownProps
   extends Omit<React.ComponentPropsWithRef<"ul">, OmitFramerProps> {
@@ -14,14 +14,6 @@ export interface FloatingInputDropdownProps
   left?: number;
   position?: React.CSSProperties["position"];
 }
-
-const VARIANTS: Partial<FramerVariants> = {
-  initial: { opacity: 0, rotateX: -20 },
-  animate: { opacity: 1, rotateX: 0 },
-  exit: { opacity: 0, rotateX: -20, transition: { ease: "anticipate" } },
-};
-
-const variants = setVariants([VARIANTS]);
 
 export const FloatingInputDropdown = React.forwardRef<
   HTMLUListElement,
@@ -48,7 +40,7 @@ export const FloatingInputDropdown = React.forwardRef<
       <AnimatePresence>
         {isOpen && (
           <motion.ul
-            variants={variants}
+            variants={SWING_VARIANTS}
             {...framerVariantProps}
             className={classNames}
             {...rest}

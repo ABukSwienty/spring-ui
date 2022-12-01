@@ -34,11 +34,7 @@ const Component = ({
       };
 
   return (
-    <div
-      ref={reference}
-      {...hoverStrategy.current}
-      className="perspective-2xl h-fit w-fit"
-    >
+    <div ref={reference} {...hoverStrategy.current} className="h-fit w-fit">
       <Button {...rest} {...iconProps} {...clickStrategy.current}>
         {label}
       </Button>

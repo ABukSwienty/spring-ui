@@ -28,10 +28,7 @@ const Component = <ValueType extends string | number, Name extends string>({
     useContext<ComboBoxContextInterface<ValueType, Name>>(ComboBoxContext);
 
   return (
-    <div
-      ref={floating.reference}
-      className="perspective-2xl relative h-fit w-full"
-    >
+    <div ref={floating.reference} className="relative h-fit w-full">
       {isFilterable ? (
         <ComboBoxFilterableInput {...inputProps} />
       ) : (

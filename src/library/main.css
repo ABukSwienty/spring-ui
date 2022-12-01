@@ -1,29 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer utilities {
-  .perspective-none {
-    perspective: none;
-  }
-  .perspective-sm {
-    perspective: 100px;
-    z-index: 1;
-  }
-  .perspective-md {
-    perspective: 200px;
-    z-index: 1;
-  }
-  .perspective-lg {
-    perspective: 600px;
-    z-index: 1;
-  }
-  .perspective-xl {
-    perspective: 1200px;
-    z-index: 1;
-  }
-  .perspective-2xl {
-    perspective: 2000px;
-    z-index: 1;
-  }
-}

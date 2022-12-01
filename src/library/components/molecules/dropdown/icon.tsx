@@ -16,11 +16,7 @@ const Component = ({ children, ...rest }: DropdownIconProps) => {
     useContext(DropdownContext);
 
   return (
-    <div
-      ref={reference}
-      {...hoverStrategy.current}
-      className="perspective-2xl h-fit w-fit"
-    >
+    <div ref={reference} {...hoverStrategy.current} className="h-fit w-fit">
       <IconButton showTooltip={!isOpen} {...rest} {...clickStrategy.current} />
 
       <AnimatePresence>

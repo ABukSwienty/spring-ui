@@ -33,10 +33,7 @@ const Component = <ValueType extends string | number, Name extends string>({
       MultiComboBoxContext
     );
   return (
-    <div
-      ref={floating.reference}
-      className="perspective-2xl group relative h-fit w-full"
-    >
+    <div ref={floating.reference} className="group relative h-fit w-full">
       {label && (
         <Label
           htmlFor={name}

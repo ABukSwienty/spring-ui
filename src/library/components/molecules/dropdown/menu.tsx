@@ -3,17 +3,8 @@ import { motion } from "framer-motion";
 import React, { useContext } from "react";
 import { DropdownContext } from ".";
 import framerVariantProps from "../../../constants/framer-variant-props";
+import { SWING_VARIANTS } from "../../../constants/swing-variants";
 import useOnClickOutside from "../../../hooks/use-on-click-outside";
-import { FramerVariants } from "../../../types/framer-variants";
-import setVariants from "../../../util/set-variants";
-
-const VARIANTS: Partial<FramerVariants> = {
-  initial: { opacity: 0, rotateX: -20 },
-  animate: { opacity: 1, rotateX: 0 },
-  exit: { opacity: 0, rotateX: -20, transition: { ease: "anticipate" } },
-};
-
-const variants = setVariants([VARIANTS]);
 
 export const DropDownMenu = ({ children }: { children: React.ReactNode }) => {
   const { x, y, floating, strategy, refs, handleClose, minWidth, maxWidth } =
@@ -27,7 +18,7 @@ export const DropDownMenu = ({ children }: { children: React.ReactNode }) => {
   return (
     <FloatingPortal>
       <motion.ul
-        variants={variants}
+        variants={SWING_VARIANTS}
         {...framerVariantProps}
         ref={floating}
         style={{

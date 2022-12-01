@@ -92,7 +92,7 @@ const Component = ({
   const display = displayStrategy.current(displayValue);
 
   return (
-    <div ref={reference} className="perspective-2xl relative h-fit w-full">
+    <div ref={reference} className="relative h-fit w-full">
       <Input
         {...rest}
         color={color}

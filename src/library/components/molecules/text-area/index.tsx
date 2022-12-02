@@ -114,6 +114,8 @@ export const TextArea = ({
           />
         )}
         <textarea
+          id={id ? id : name}
+          name={name}
           style={inputStyles}
           className={classNames}
           {...props}

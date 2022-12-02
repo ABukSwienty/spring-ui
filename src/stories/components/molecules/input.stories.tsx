@@ -136,7 +136,7 @@ TrailingComboBox.args = {
         className="rounded-l-none border-l !shadow-none !ring-0"
         options={wands}
         onChange={() => {}}
-        isFilterable={false}
+        isFilterable={true}
         width="150%"
         placement="bottom-end"
         leadingInlineAddOn="🧹"

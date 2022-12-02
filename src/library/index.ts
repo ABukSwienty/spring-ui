@@ -3,6 +3,7 @@ export * from "./components/atoms/button-group/button-group";
 export * from "./components/atoms/button/button";
 export * from "./components/atoms/checkbox/checkbox";
 export * from "./components/atoms/flex";
+export * from "./components/atoms/grid";
 export * from "./components/atoms/icon-button";
 export * from "./components/atoms/info-card";
 export * from "./components/atoms/skeleton";
